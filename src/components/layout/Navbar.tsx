@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+
+import {
+  useRef,
+  useState,
+} from "react";
 
 import {
   Menu,
   X,
-  ArrowUpRight,
   ChevronDown,
+  ArrowUpRight,
 } from "lucide-react";
 
 import { menus } from "@/lib/menu/menu";
@@ -17,16 +21,54 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] =
     useState(false);
 
-  const [activeMegaMenu, setActiveMegaMenu] =
-    useState<string | null>(null);
-
   const [mobileExpanded, setMobileExpanded] =
     useState<string | null>(null);
 
-  return (
-    <header className="fixed inset-x-0 top-0 z-50">
+  const [activeMegaMenu, setActiveMegaMenu] =
+    useState<string | null>(null);
 
-      <div className="px-4 lg:px-8 pt-5">
+  const closeTimeoutRef =
+    useRef<NodeJS.Timeout | null>(null);
+
+  /* -------------------------------- */
+  /* MEGA MENU CONTROL */
+  /* -------------------------------- */
+
+  const openMegaMenu = (
+    name: string
+  ) => {
+
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+
+    setActiveMegaMenu(name);
+
+  };
+
+  const closeMegaMenu = () => {
+
+    closeTimeoutRef.current =
+      setTimeout(() => {
+
+        setActiveMegaMenu(null);
+
+      }, 180);
+
+  };
+
+  return (
+    <header
+      className="
+        fixed
+        inset-x-0
+        top-0
+
+        z-50
+      "
+    >
+
+      <div className="px-4 pt-5 lg:px-8">
 
         {/* NAVBAR */}
         <div
@@ -73,7 +115,7 @@ export default function Navbar() {
             "
           />
 
-          {/* bottom line */}
+          {/* line */}
           <div
             className="
               absolute
@@ -90,7 +132,16 @@ export default function Navbar() {
           />
 
           {/* LEFT */}
-          <div className="relative z-10 flex items-center gap-10">
+          <div
+            className="
+              relative
+              z-10
+
+              flex
+              items-center
+              gap-10
+            "
+          >
 
             {/* LOGO */}
             <Link
@@ -142,353 +193,391 @@ export default function Navbar() {
 
             {/* DESKTOP MENU */}
             <nav
-                className="
-                    hidden
-                    lg:flex
+              className="
+                hidden
+                lg:flex
 
-                    items-center
-                    gap-1
-                "
-                >
+                items-center
+                gap-1
+              "
+            >
 
-                {menus.map((item) => {
+              {menus.map((item) => {
 
-                    const hasMegaMenu =
-                    !!item.megaMenu;
+                const hasMegaMenu =
+                  !!item.megaMenu;
 
-                    const isActive =
-                    activeMegaMenu === item.name;
+                const isActive =
+                  activeMegaMenu === item.name;
 
-                    return (
+                return (
 
-                    <div
-                        key={item.name}
+                  <div
+                    key={item.name}
 
-                        className="
+                    className="
+                      relative
+
+                      flex
+                      items-center
+                    "
+
+                    onMouseEnter={() => {
+
+                      if (hasMegaMenu) {
+                        openMegaMenu(item.name);
+                      }
+
+                    }}
+
+                    onMouseLeave={() => {
+
+                      if (hasMegaMenu) {
+                        closeMegaMenu();
+                      }
+
+                    }}
+                  >
+
+                    {/* MENU LINK */}
+                    <Link
+                      href={item.href}
+
+                      className="
+                        group
+
                         relative
 
                         flex
+                        h-11
+
                         items-center
+                        gap-2
+
+                        rounded-xl
+
+                        px-5
+
+                        text-[14px]
+                        font-medium
+
+                        text-slate-300
+
+                        transition-all
+                        duration-300
+
+                        hover:text-white
+                      "
+                    >
+
+                      {/* bg */}
+                      <div
+                        className={`
+                          absolute
+                          inset-0
+
+                          rounded-xl
+
+                          bg-white/[0.04]
+
+                          transition-opacity
+                          duration-300
+
+                          ${
+                            isActive
+                              ? "opacity-100"
+                              : "opacity-0 group-hover:opacity-100"
+                          }
+                        `}
+                      />
+
+                      {/* line */}
+                      <div
+                        className={`
+                          absolute
+                          bottom-0
+                          left-1/2
+
+                          h-[2px]
+
+                          -translate-x-1/2
+
+                          rounded-full
+
+                          bg-emerald-400
+
+                          transition-all
+                          duration-300
+
+                          ${
+                            isActive
+                              ? "w-8"
+                              : "w-0 group-hover:w-8"
+                          }
+                        `}
+                      />
+
+                      <span className="relative z-10">
+                        {item.name}
+                      </span>
+
+                      {hasMegaMenu && (
+
+                        <ChevronDown
+                          size={15}
+                          className={`
+                            relative
+                            z-10
+
+                            transition-transform
+                            duration-300
+
+                            ${
+                              isActive
+                                ? "rotate-180"
+                                : ""
+                            }
+                          `}
+                        />
+
+                      )}
+
+                    </Link>
+
+                    {/* hover bridge */}
+                    {hasMegaMenu && isActive && (
+
+                      <div
+                        className="
+                          absolute
+                          left-0
+                          top-[44px]
+
+                          h-[36px]
+                          w-[760px]
+                        "
+                      />
+
+                    )}
+
+                    {/* MEGA MENU */}
+                    {hasMegaMenu &&
+                      isActive && (
+
+                      <div
+                        className="
+                          absolute
+                          left-0
+                          top-[72px]
+
+                          w-[760px]
+
+                          overflow-hidden
+
+                          rounded-[32px]
+
+                          border
+                          border-white/10
+
+                          bg-[rgba(7,17,12,.96)]
+
+                          p-8
+
+                          backdrop-blur-3xl
+
+                          shadow-[0_25px_100px_rgba(0,0,0,.45)]
                         "
 
                         onMouseEnter={() => {
 
-                        if (hasMegaMenu) {
-                            setActiveMegaMenu(item.name);
-                        }
+                          if (
+                            closeTimeoutRef.current
+                          ) {
+
+                            clearTimeout(
+                              closeTimeoutRef.current
+                            );
+
+                          }
 
                         }}
-                    >
 
-                        {/* MENU BUTTON */}
+                        onMouseLeave={closeMegaMenu}
+                      >
+
+                        {/* glow */}
                         <div
-                        className="
-                            group
-
-                            relative
-
-                            flex
-                            h-11
-                            cursor-pointer
-                            items-center
-                            gap-2
-
-                            rounded-xl
-
-                            px-5
-
-                            text-[14px]
-                            font-medium
-
-                            text-slate-300
-
-                            transition-all
-                            duration-300
-
-                            hover:text-white
-                        "
-                        >
-
-                        {/* hover bg */}
-                        <div
-                            className={`
+                          className="
                             absolute
                             inset-0
 
-                            rounded-xl
-
-                            bg-white/[0.04]
-
-                            transition-opacity
-                            duration-300
-
-                            ${
-                                isActive
-                                ? "opacity-100"
-                                : "opacity-0 group-hover:opacity-100"
-                            }
-                            `}
+                            bg-[radial-gradient(circle_at_top_left,rgba(47,209,123,.12),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(14,165,164,.08),transparent_30%)]
+                          "
                         />
 
-                        {/* hover line */}
-                        <div
-                            className={`
-                            absolute
-                            bottom-0
-                            left-1/2
+                        <div className="relative z-10">
 
-                            h-[2px]
+                          {/* top */}
+                          <div className="max-w-xl">
 
-                            -translate-x-1/2
-
-                            rounded-full
-
-                            bg-emerald-400
-
-                            transition-all
-                            duration-300
-
-                            ${
-                                isActive
-                                ? "w-8"
-                                : "w-0 group-hover:w-8"
-                            }
-                            `}
-                        />
-
-                        {/* text */}
-                        <Link
-                            href={item.href}
-                            className="relative z-10"
-                        >
-                            {item.name}
-                        </Link>
-
-                        {/* icon */}
-                        {hasMegaMenu && (
-
-                            <ChevronDown
-                            size={15}
-                            className={`
-                                relative
-                                z-10
-
-                                transition-transform
-                                duration-300
-
-                                ${
-                                isActive
-                                    ? "rotate-180"
-                                    : ""
-                                }
-                            `}
-                            />
-
-                        )}
-
-                        </div>
-
-                        {/* HOVER BRIDGE */}
-                        {hasMegaMenu && isActive && (
-
-                        <div
-                            className="
-                            absolute
-                            left-0
-                            top-[42px]
-
-                            h-[40px]
-                            w-[760px]
-                            "
-                        />
-
-                        )}
-
-                        {/* MEGA MENU */}
-                        {hasMegaMenu &&
-                        isActive && (
-
-                        <div
-                            className="
-                            absolute
-                            left-0
-                            top-[72px]
-
-                            w-[760px]
-
-                            overflow-hidden
-
-                            rounded-[32px]
-
-                            border
-                            border-white/10
-
-                            bg-[rgba(7,17,12,.96)]
-
-                            p-8
-
-                            backdrop-blur-3xl
-
-                            shadow-[0_25px_100px_rgba(0,0,0,.45)]
-                            "
-
-                            onMouseLeave={() => {
-                            setActiveMegaMenu(null);
-                            }}
-                        >
-
-                            {/* glow */}
                             <div
+                              className="
+                                text-[12px]
+
+                                font-semibold
+
+                                uppercase
+
+                                tracking-[0.28em]
+
+                                text-emerald-300
+                              "
+                            >
+                              {item.megaMenu.title}
+                            </div>
+
+                            <p
+                              className="
+                                mt-4
+
+                                leading-8
+
+                                text-slate-400
+                              "
+                            >
+                              {item.megaMenu.description}
+                            </p>
+
+                          </div>
+
+                          {/* sections */}
+                          <div
                             className="
-                                absolute
-                                inset-0
+                              mt-10
 
-                                bg-[radial-gradient(circle_at_top_left,rgba(47,209,123,.12),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(14,165,164,.08),transparent_30%)]
+                              grid
+                              grid-cols-2
+
+                              gap-10
                             "
-                            />
+                          >
 
-                            <div className="relative z-10">
+                            {item.megaMenu.sections.map(
+                              (section) => (
 
-                            {/* top */}
-                            <div className="max-w-xl">
+                              <div
+                                key={section.heading}
+                              >
 
                                 <div
-                                className="
-                                    text-[12px]
+                                  className="
+                                    text-sm
 
-                                    font-semibold
+                                    font-bold
 
                                     uppercase
 
-                                    tracking-[0.28em]
+                                    tracking-[0.18em]
 
-                                    text-emerald-300
-                                "
+                                    text-white
+                                  "
                                 >
-                                {item.megaMenu.title}
+                                  {section.heading}
                                 </div>
 
-                                <p
-                                className="
-                                    mt-4
+                                <div className="mt-5 space-y-3">
 
-                                    leading-8
+                                  {section.items.map(
+                                    (link) => (
 
-                                    text-slate-400
-                                "
-                                >
-                                {item.megaMenu.description}
-                                </p>
+                                    <Link
+                                      key={link.name}
 
-                            </div>
+                                      href={link.href}
 
-                            {/* sections */}
-                            <div className="mt-10 grid grid-cols-2 gap-10">
+                                      className="
+                                        group
 
-                                {item.megaMenu.sections.map(
-                                (section) => (
+                                        flex
+                                        items-center
+                                        justify-between
 
-                                <div key={section.heading}>
+                                        rounded-2xl
 
-                                    <div
-                                    className="
+                                        border
+                                        border-white/5
+
+                                        bg-white/[0.03]
+
+                                        px-5
+                                        py-4
+
                                         text-sm
 
-                                        font-bold
+                                        text-slate-300
 
-                                        uppercase
+                                        transition-all
+                                        duration-300
 
-                                        tracking-[0.18em]
-
-                                        text-white
-                                    "
+                                        hover:border-emerald-400/20
+                                        hover:bg-emerald-400/[0.06]
+                                        hover:text-white
+                                      "
                                     >
-                                    {section.heading}
-                                    </div>
 
-                                    <div className="mt-5 space-y-3">
+                                      <span>
+                                        {link.name}
+                                      </span>
 
-                                    {section.items.map(
-                                        (link) => (
-
-                                        <Link
-                                        key={link.name}
-                                        href={link.href}
-
+                                      <ArrowUpRight
+                                        size={15}
                                         className="
-                                            group
+                                          transition-transform
+                                          duration-300
 
-                                            flex
-                                            items-center
-                                            justify-between
-
-                                            rounded-2xl
-
-                                            border
-                                            border-white/5
-
-                                            bg-white/[0.03]
-
-                                            px-5
-                                            py-4
-
-                                            text-sm
-
-                                            text-slate-300
-
-                                            transition-all
-                                            duration-300
-
-                                            hover:border-emerald-400/20
-                                            hover:bg-emerald-400/[0.06]
-                                            hover:text-white
+                                          group-hover:translate-x-1
+                                          group-hover:-translate-y-1
                                         "
-                                        >
+                                      />
 
-                                        <span>
-                                            {link.name}
-                                        </span>
+                                    </Link>
 
-                                        <ArrowUpRight
-                                            size={15}
-                                            className="
-                                            transition-transform
-                                            duration-300
-
-                                            group-hover:translate-x-1
-                                            group-hover:-translate-y-1
-                                            "
-                                        />
-
-                                        </Link>
-
-                                    ))}
-
-                                    </div>
+                                  ))}
 
                                 </div>
 
-                                ))}
+                              </div>
 
-                            </div>
+                            ))}
 
-                            </div>
+                          </div>
 
                         </div>
 
-                        )}
+                      </div>
 
-                    </div>
+                    )}
 
-                    );
-                })}
+                  </div>
 
-                </nav>
+                );
+              })}
+
+            </nav>
 
           </div>
 
           {/* RIGHT */}
-          <div className="relative z-10 flex items-center gap-3">
+          <div
+            className="
+              relative
+              z-10
+
+              flex
+              items-center
+              gap-3
+            "
+          >
 
             {/* CTA */}
             <button
@@ -523,7 +612,6 @@ export default function Navbar() {
                 duration-300
 
                 hover:scale-[1.03]
-                hover:shadow-[0_0_45px_rgba(47,209,123,.35)]
               "
             >
 
@@ -542,7 +630,7 @@ export default function Navbar() {
 
             </button>
 
-            {/* MOBILE BUTTON */}
+            {/* mobile button */}
             <button
               onClick={() =>
                 setMobileOpen(!mobileOpen)
@@ -624,61 +712,106 @@ export default function Navbar() {
                   mobileExpanded === item.name;
 
                 return (
+
                   <div key={item.name}>
 
-                    {/* mobile item */}
-                    <button
-                      type="button"
+                    {/* SIMPLE LINK */}
+                    {!hasMegaMenu && (
 
-                      onClick={() => {
+                      <Link
+                        href={item.href}
 
-                        if (!hasMegaMenu) {
-                          setMobileOpen(false);
-                          return;
+                        onClick={() =>
+                          setMobileOpen(false)
                         }
 
-                        setMobileExpanded(
-                          expanded
-                            ? null
-                            : item.name
-                        );
+                        className="
+                          flex
+                          items-center
+                          justify-between
 
-                      }}
+                          rounded-2xl
 
-                      className="
-                        flex
-                        w-full
+                          border
+                          border-white/5
 
-                        items-center
-                        justify-between
+                          bg-white/[0.03]
 
-                        rounded-2xl
+                          px-5
+                          py-4
 
-                        border
-                        border-white/5
+                          text-sm
+                          font-medium
 
-                        bg-white/[0.03]
+                          text-slate-200
 
-                        px-5
-                        py-4
+                          transition-all
+                          duration-300
 
-                        text-sm
-                        font-medium
+                          hover:border-emerald-400/20
+                          hover:bg-emerald-400/[0.06]
+                          hover:text-white
+                        "
+                      >
 
-                        text-slate-200
+                        <span>{item.name}</span>
 
-                        transition-all
-                        duration-300
+                        <ArrowUpRight
+                          size={14}
+                        />
 
-                        hover:border-emerald-400/20
-                        hover:bg-emerald-400/[0.06]
-                        hover:text-white
-                      "
-                    >
+                      </Link>
 
-                      <span>{item.name}</span>
+                    )}
 
-                      {hasMegaMenu && (
+                    {/* EXPANDABLE */}
+                    {hasMegaMenu && (
+
+                      <button
+                        type="button"
+
+                        onClick={() => {
+
+                          setMobileExpanded(
+                            expanded
+                              ? null
+                              : item.name
+                          );
+
+                        }}
+
+                        className="
+                          flex
+                          w-full
+
+                          items-center
+                          justify-between
+
+                          rounded-2xl
+
+                          border
+                          border-white/5
+
+                          bg-white/[0.03]
+
+                          px-5
+                          py-4
+
+                          text-sm
+                          font-medium
+
+                          text-slate-200
+
+                          transition-all
+                          duration-300
+
+                          hover:border-emerald-400/20
+                          hover:bg-emerald-400/[0.06]
+                          hover:text-white
+                        "
+                      >
+
+                        <span>{item.name}</span>
 
                         <ChevronDown
                           size={16}
@@ -694,11 +827,11 @@ export default function Navbar() {
                           `}
                         />
 
-                      )}
+                      </button>
 
-                    </button>
+                    )}
 
-                    {/* mobile child */}
+                    {/* CHILDREN */}
                     {expanded &&
                       item.megaMenu && (
 
@@ -709,6 +842,7 @@ export default function Navbar() {
 
                           <div
                             key={section.heading}
+
                             className="
                               rounded-2xl
 
@@ -744,6 +878,7 @@ export default function Navbar() {
 
                                 <Link
                                   key={link.name}
+
                                   href={link.href}
 
                                   onClick={() =>
@@ -795,42 +930,11 @@ export default function Navbar() {
                     )}
 
                   </div>
+
                 );
               })}
 
             </div>
-
-            {/* mobile cta */}
-            <button
-              className="
-                mt-4
-
-                flex
-                h-12
-                w-full
-
-                items-center
-                justify-center
-                gap-2
-
-                rounded-2xl
-
-                bg-gradient-to-r
-                from-emerald-400
-                to-green-500
-
-                text-sm
-                font-bold
-
-                text-[#04110A]
-              "
-            >
-
-              Get Tickets
-
-              <ArrowUpRight size={16} />
-
-            </button>
 
           </div>
 
