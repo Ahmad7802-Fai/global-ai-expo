@@ -7,7 +7,42 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import {
+  useEffect,
+  useState,
+} from "react";
+
+import SceneBackground from "@/components/3d/SceneBackground";
+import AIOrb from "@/components/3d/AIOrb";
+import HologramRing from "@/components/3d/HologramRing";
+import RobotModel from "@/components/3d/RobotModel";
+
 export default function Hero() {
+
+  /*
+  =========================================
+  FIX NEXT.JS APP ROUTER BACK NAVIGATION
+  =========================================
+  */
+
+  const [mounted, setMounted] =
+    useState(false);
+
+  useEffect(() => {
+
+    setMounted(true);
+
+    /*
+    force browser repaint
+    */
+    window.dispatchEvent(
+      new Event("resize")
+    );
+
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <section
       className="
@@ -16,6 +51,8 @@ export default function Hero() {
         min-h-screen
 
         overflow-hidden
+
+        bg-[#040B08]
       "
     >
 
@@ -25,9 +62,13 @@ export default function Hero() {
         muted
         loop
         playsInline
+        preload="auto"
+
         className="
           absolute
           inset-0
+
+          z-0
 
           h-full
           w-full
@@ -37,10 +78,12 @@ export default function Hero() {
           scale-[1.06]
         "
       >
+
         <source
           src="https://videos.pexels.com/video-files/3130284/3130284-uhd_2560_1440_30fps.mp4"
           type="video/mp4"
         />
+
       </video>
 
       {/* DARK OVERLAY */}
@@ -48,6 +91,8 @@ export default function Hero() {
         className="
           absolute
           inset-0
+
+          z-[1]
 
           bg-[linear-gradient(180deg,rgba(4,10,7,.60)_0%,rgba(4,10,7,.45)_40%,rgba(4,10,7,.92)_100%)]
         "
@@ -59,6 +104,8 @@ export default function Hero() {
           absolute
           inset-0
 
+          z-[2]
+
           bg-[radial-gradient(circle_at_top_left,rgba(47,209,123,.16),transparent_30%),radial-gradient(circle_at_top_right,rgba(14,165,164,.10),transparent_26%)]
         "
       />
@@ -69,6 +116,8 @@ export default function Hero() {
           absolute
           left-[-120px]
           top-[120px]
+
+          z-[2]
 
           h-[420px]
           w-[420px]
@@ -87,6 +136,8 @@ export default function Hero() {
           right-[-120px]
           top-[120px]
 
+          z-[2]
+
           h-[380px]
           w-[380px]
 
@@ -104,6 +155,8 @@ export default function Hero() {
           absolute
           inset-0
 
+          z-[2]
+
           opacity-[0.08]
 
           bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)]
@@ -112,13 +165,94 @@ export default function Hero() {
         "
       />
 
-      {/* CONTENT */}
+      {/* =========================================
+          3D LAYERS
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+
+          absolute
+          inset-0
+
+          z-[3]
+
+          overflow-hidden
+        "
+      >
+
+        {/* cinematic background */}
+        <SceneBackground />
+
+        {/* robot */}
+        <div
+          className="
+            absolute
+
+            right-[-120px]
+            bottom-[-60px]
+
+            opacity-[0.22]
+
+            scale-[1.05]
+          "
+        >
+
+          <RobotModel />
+
+        </div>
+
+        {/* orb */}
+        <div
+          className="
+            absolute
+
+            right-[8%]
+            top-1/2
+
+            -translate-y-1/2
+
+            opacity-90
+          "
+        >
+
+          <AIOrb />
+
+        </div>
+
+        {/* hologram */}
+        <div
+          className="
+            absolute
+
+            right-[8%]
+            top-1/2
+
+            -translate-y-1/2
+
+            scale-[1.45]
+
+            opacity-40
+          "
+        >
+
+          <HologramRing />
+
+        </div>
+
+      </div>
+
+      {/* =========================================
+          CONTENT
+      ========================================= */}
+
       <div
         className="
           container-ai
 
           relative
-          z-10
+          z-20
 
           flex
           min-h-screen
@@ -132,16 +266,16 @@ export default function Hero() {
         <div className="w-full">
 
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 80,
-            }}
+
+            initial={false}
+
             animate={{
               opacity: 1,
               y: 0,
             }}
+
             transition={{
-              duration: 1,
+              duration: 0.8,
             }}
           >
 

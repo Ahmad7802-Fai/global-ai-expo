@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import {
   HeartPulse,
   Landmark,
@@ -21,6 +22,7 @@ const startups = [
     description:
       "Advanced diagnostics and predictive healthcare systems powered by AI.",
   },
+
   {
     name: "QuantFlow",
     category: "AI Finance",
@@ -31,6 +33,7 @@ const startups = [
     description:
       "Intelligent financial analytics and autonomous AI trading infrastructure.",
   },
+
   {
     name: "RoboSphere",
     category: "AI Robotics",
@@ -41,6 +44,7 @@ const startups = [
     description:
       "Building next-generation robotics and autonomous physical AI systems.",
   },
+
   {
     name: "NeuroLearn",
     category: "AI Education",
@@ -51,6 +55,7 @@ const startups = [
     description:
       "Adaptive AI learning ecosystems and personalized education platforms.",
   },
+
   {
     name: "Sentinel AI",
     category: "AI Security",
@@ -64,6 +69,7 @@ const startups = [
 ];
 
 export default function StartupShowcase() {
+
   return (
     <section
       className="
@@ -216,29 +222,35 @@ export default function StartupShowcase() {
         </div>
 
         {/* cards */}
-        <div className="mt-20 grid gap-6 lg:grid-cols-3">
+        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
           {startups.map((startup, index) => {
+
             const Icon = startup.icon;
 
             return (
               <motion.div
                 key={startup.name}
+
                 initial={{
                   opacity: 0,
                   y: 40,
                 }}
+
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
+
                 transition={{
                   duration: 0.5,
                   delay: index * 0.08,
                 }}
+
                 viewport={{
                   once: true,
                 }}
+
                 className="
                   group
 
@@ -264,8 +276,110 @@ export default function StartupShowcase() {
                 "
               >
 
+                {/* futuristic glow */}
+                <div
+                  className="
+                    absolute
+                    right-[-40px]
+                    top-[120px]
+
+                    h-[220px]
+                    w-[220px]
+
+                    rounded-full
+
+                    bg-emerald-400/10
+
+                    blur-[80px]
+
+                    transition-all
+                    duration-700
+
+                    group-hover:scale-125
+                  "
+                />
+
+                {/* orb */}
+                <div
+                  className="
+                    absolute
+                    right-10
+                    top-[120px]
+
+                    h-24
+                    w-24
+
+                    rounded-full
+
+                    border
+                    border-emerald-400/20
+
+                    bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,.45),rgba(16,185,129,.15),transparent_72%)]
+
+                    shadow-[0_0_40px_rgba(16,185,129,.22)]
+
+                    backdrop-blur-2xl
+
+                    transition-all
+                    duration-700
+
+                    group-hover:rotate-[25deg]
+                    group-hover:scale-110
+                  "
+                />
+
+                {/* ring */}
+                <div
+                  className="
+                    absolute
+                    right-[72px]
+                    top-[150px]
+
+                    h-10
+                    w-10
+
+                    rounded-full
+
+                    border
+                    border-emerald-300/30
+                  "
+                />
+
+                {/* hologram sweep */}
+                <div
+                  className="
+                    absolute
+                    left-0
+                    top-0
+
+                    h-full
+                    w-[120px]
+
+                    bg-gradient-to-r
+                    from-emerald-400/10
+                    via-emerald-300/5
+                    to-transparent
+
+                    opacity-0
+
+                    transition-all
+                    duration-700
+
+                    group-hover:translate-x-10
+                    group-hover:opacity-100
+                  "
+                />
+
                 {/* image */}
-                <div className="relative h-[260px] overflow-hidden">
+                <div
+                  className="
+                    relative
+
+                    h-[260px]
+
+                    overflow-hidden
+                  "
+                >
 
                   <img
                     src={startup.image}
@@ -331,7 +445,7 @@ export default function StartupShowcase() {
                 </div>
 
                 {/* content */}
-                <div className="relative p-8">
+                <div className="relative z-10 p-8">
 
                   {/* icon */}
                   <div
@@ -349,7 +463,9 @@ export default function StartupShowcase() {
                       text-emerald-300
                     "
                   >
+
                     <Icon size={24} />
+
                   </div>
 
                   {/* title */}
@@ -434,7 +550,6 @@ export default function StartupShowcase() {
                 </div>
 
               </motion.div>
-
             );
           })}
 

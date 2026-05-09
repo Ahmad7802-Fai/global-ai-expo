@@ -13,6 +13,9 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
+import Globe from "@/components/3d/Globe";
+import NeuralNetwork from "@/components/3d/NeuralNetwork";
+
 const links = {
   Explore: [
     "About Expo",
@@ -40,6 +43,7 @@ const links = {
 };
 
 export default function MegaFooter() {
+
   return (
     <footer
       className="
@@ -53,6 +57,28 @@ export default function MegaFooter() {
         pb-14
       "
     >
+
+      {/* neural network background */}
+      <NeuralNetwork />
+
+      {/* globe */}
+      <div
+        className="
+          absolute
+          right-[-180px]
+          bottom-[-180px]
+
+          z-[1]
+
+          opacity-[0.18]
+
+          pointer-events-none
+        "
+      >
+
+        <Globe />
+
+      </div>
 
       {/* glow */}
       <div
@@ -100,6 +126,16 @@ export default function MegaFooter() {
           bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)]
 
           bg-[size:48px_48px]
+        "
+      />
+
+      {/* vignette */}
+      <div
+        className="
+          absolute
+          inset-0
+
+          bg-[radial-gradient(circle_at_center,transparent_0%,rgba(4,11,8,.28)_65%,rgba(4,11,8,.88)_100%)]
         "
       />
 
@@ -184,9 +220,12 @@ export default function MegaFooter() {
                 <button
                   key={index}
                   className="
+                    group
+
                     flex
                     h-14
                     w-14
+
                     items-center
                     justify-center
 
@@ -199,16 +238,27 @@ export default function MegaFooter() {
 
                     text-slate-300
 
+                    backdrop-blur-xl
+
                     transition-all
                     duration-300
 
                     hover:border-emerald-400/30
                     hover:bg-emerald-400/10
                     hover:text-emerald-300
+                    hover:shadow-[0_0_30px_rgba(16,185,129,.18)]
                   "
                 >
 
-                  <Icon size={18} />
+                  <Icon
+                    size={18}
+                    className="
+                      transition-transform
+                      duration-300
+
+                      group-hover:scale-110
+                    "
+                  />
 
                 </button>
 
@@ -242,6 +292,7 @@ export default function MegaFooter() {
                   <Link
                     key={item}
                     href="/"
+
                     className="
                       group
 
@@ -289,6 +340,8 @@ export default function MegaFooter() {
         {/* BIG TEXT */}
         <div
           className="
+            relative
+
             mt-28
 
             overflow-hidden
@@ -300,8 +353,31 @@ export default function MegaFooter() {
           "
         >
 
+          {/* glow */}
           <div
             className="
+              absolute
+              left-1/2
+              top-1/2
+
+              h-[260px]
+              w-[260px]
+
+              -translate-x-1/2
+              -translate-y-1/2
+
+              rounded-full
+
+              bg-emerald-400/10
+
+              blur-[100px]
+            "
+          />
+
+          <div
+            className="
+              relative
+
               text-center
 
               text-[58px]
