@@ -30,15 +30,16 @@ export default function SectionTitle({
   return (
     <h2
       className={`
-        text-5xl
-        md:text-6xl
-        xl:text-7xl
+        text-[52px]
+        leading-[0.92]
+
+        md:text-[72px]
+
+        xl:text-[96px]
 
         font-black
 
-        leading-[0.95]
-
-        tracking-[-0.06em]
+        tracking-[-0.07em]
 
         ${
           dark
@@ -64,9 +65,9 @@ export default function SectionTitle({
 
           {highlight && (
             <>
-              {" "}
+              <br />
 
-              <GradientText>
+              <GradientText dark={dark}>
                 {highlight}
               </GradientText>
             </>

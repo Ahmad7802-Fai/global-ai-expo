@@ -10,13 +10,16 @@ type GradientTextProps = {
   glow?: boolean;
 
   animated?: boolean;
+
+  dark?: boolean;
 };
 
 export default function GradientText({
   children,
   className = "",
   glow = true,
-  animated = true,
+  animated = false,
+  dark = false,
 }: GradientTextProps) {
 
   return (
@@ -25,9 +28,23 @@ export default function GradientText({
         relative
         inline-block
 
-        bg-[linear-gradient(92deg,#ffffff_0%,#A7F3D0_18%,#34D399_40%,#10B981_62%,#6EE7B7_82%,#ffffff_100%)]
+        bg-gradient-to-r
 
-        bg-[length:220%_100%]
+        ${
+          dark
+            ? `
+              from-[#10B981]
+              via-[#059669]
+              to-[#34D399]
+            `
+            : `
+              from-[#A7F3D0]
+              via-[#34D399]
+              to-[#10B981]
+            `
+        }
+
+        bg-[length:200%_100%]
 
         bg-clip-text
 
@@ -41,7 +58,9 @@ export default function GradientText({
 
         ${
           glow
-            ? "drop-shadow-[0_0_18px_rgba(16,185,129,.22)]"
+            ? `
+              drop-shadow-[0_0_12px_rgba(16,185,129,.16)]
+            `
             : ""
         }
 
@@ -49,7 +68,7 @@ export default function GradientText({
       `}
     >
 
-      {/* glow layer */}
+      {/* soft glow */}
       {glow && (
         <span
           className="
@@ -58,15 +77,9 @@ export default function GradientText({
 
             -z-10
 
-            bg-[linear-gradient(92deg,#A7F3D0_0%,#34D399_35%,#10B981_65%,#6EE7B7_100%)]
+            opacity-20
 
-            bg-clip-text
-
-            text-transparent
-
-            opacity-40
-
-            blur-[10px]
+            blur-[6px]
           "
         >
           {children}
