@@ -12,6 +12,14 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+import {
+  SectionBadge,
+  SectionTitle,
+  GridBackground,
+  GlowOrb,
+  SectionContainer,
+} from "@/components/ui";
+
 const zones = [
   {
     title: "AI Conference",
@@ -19,7 +27,8 @@ const zones = [
     icon: Mic2,
     image:
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop",
-    className: "lg:col-span-7 lg:row-span-2 min-h-[620px]",
+    className:
+      "lg:col-span-7 lg:row-span-2 min-h-[620px]",
   },
 
   {
@@ -28,7 +37,8 @@ const zones = [
     icon: Rocket,
     image:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
-    className: "lg:col-span-5 min-h-[300px]",
+    className:
+      "lg:col-span-5 min-h-[300px]",
   },
 
   {
@@ -37,7 +47,8 @@ const zones = [
     icon: Bot,
     image:
       "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=1600&auto=format&fit=crop",
-    className: "lg:col-span-5 min-h-[300px]",
+    className:
+      "lg:col-span-5 min-h-[300px]",
   },
 
   {
@@ -46,7 +57,8 @@ const zones = [
     icon: Building2,
     image:
       "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=1600&auto=format&fit=crop",
-    className: "lg:col-span-4 min-h-[320px]",
+    className:
+      "lg:col-span-4 min-h-[320px]",
   },
 
   {
@@ -55,7 +67,8 @@ const zones = [
     icon: BriefcaseBusiness,
     image:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop",
-    className: "lg:col-span-4 min-h-[320px]",
+    className:
+      "lg:col-span-4 min-h-[320px]",
   },
 
   {
@@ -64,7 +77,8 @@ const zones = [
     icon: Trophy,
     image:
       "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop",
-    className: "lg:col-span-4 min-h-[320px]",
+    className:
+      "lg:col-span-4 min-h-[320px]",
   },
 ];
 
@@ -83,117 +97,67 @@ export default function ExpoExperienceZones() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[360px]
           w-[360px]
 
-          rounded-full
-
           bg-emerald-400/12
-
-          blur-[120px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[120px]
         "
       />
 
-      {/* grid bg */}
-      <div
+      {/* grid */}
+      <GridBackground
         className="
-          absolute
-          inset-0
-
           opacity-[0.03]
 
-          bg-[linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
+          [background-image:linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
         "
       />
 
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
         <div className="grid gap-14 lg:grid-cols-2 lg:items-end">
 
           <div>
 
-            <div
+            <SectionBadge
               className="
-                inline-flex
-                items-center
-
-                rounded-full
-
-                border
                 border-emerald-500/20
 
                 bg-white/70
 
-                px-5
-                py-2
-
-                text-[11px]
-                font-semibold
-
-                uppercase
-
-                tracking-[0.28em]
-
                 text-emerald-700
-
-                backdrop-blur-xl
               "
             >
               Expo Experience Zones
+            </SectionBadge>
+
+            <div className="mt-6">
+
+              <SectionTitle
+                dark
+                title="Experience The Future"
+                highlight="of AI Innovation"
+              />
+
             </div>
-
-            <h2
-              className="
-                mt-6
-
-                max-w-5xl
-
-                text-5xl
-                md:text-6xl
-                xl:text-7xl
-
-                font-black
-
-                leading-[0.95]
-
-                tracking-[-0.06em]
-
-                text-[#07110C]
-              "
-            >
-
-              Experience The Future
-              <span className="text-emerald-600">
-                {" "}of AI Innovation
-              </span>
-
-            </h2>
 
           </div>
 
@@ -429,7 +393,7 @@ export default function ExpoExperienceZones() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

@@ -342,7 +342,7 @@ export default function MegaFooter() {
           className="
             relative
 
-            mt-28
+            mt-20
 
             overflow-hidden
 
@@ -370,7 +370,7 @@ export default function MegaFooter() {
 
               bg-emerald-400/10
 
-              blur-[100px]
+              blur-[50px]
             "
           />
 
@@ -416,11 +416,11 @@ export default function MegaFooter() {
         {/* BOTTOM */}
         <div
           className="
-            mt-10
+            mt-5
 
             flex
             flex-col
-            gap-5
+            gap-2
 
             lg:flex-row
             lg:items-center

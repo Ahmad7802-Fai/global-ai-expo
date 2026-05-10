@@ -1,0 +1,21 @@
+export default function NoiseOverlay() {
+  return (
+    <div
+      className="
+        pointer-events-none
+
+        absolute
+        inset-0
+
+        opacity-[0.035]
+
+        mix-blend-soft-light
+      "
+
+      style={{
+        backgroundImage:
+          "url('/noise.png')",
+      }}
+    />
+  );
+}

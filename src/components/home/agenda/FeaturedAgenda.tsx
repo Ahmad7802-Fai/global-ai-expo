@@ -1,11 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import {
   Clock3,
   MapPin,
   ArrowUpRight,
 } from "lucide-react";
+
+import {
+  SectionBadge,
+  SectionTitle,
+  GlassCard,
+  GridBackground,
+  GlowOrb,
+  SectionContainer,
+} from "@/components/ui";
 
 const agenda = [
   {
@@ -53,115 +63,50 @@ export default function FeaturedAgenda() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[360px]
           w-[360px]
-
-          rounded-full
-
-          bg-emerald-400/10
-
-          blur-[120px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[120px]
         "
       />
 
       {/* grid */}
-      <div
-        className="
-          absolute
-          inset-0
+      <GridBackground />
 
-          opacity-[0.04]
-
-          bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
-        "
-      />
-
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
         <div className="grid gap-14 lg:grid-cols-2 lg:items-end">
 
           <div>
 
-            <div
-              className="
-                inline-flex
-                items-center
-
-                rounded-full
-
-                border
-                border-emerald-400/20
-
-                bg-emerald-400/10
-
-                px-5
-                py-2
-
-                text-[11px]
-                font-semibold
-
-                uppercase
-
-                tracking-[0.28em]
-
-                text-emerald-300
-              "
-            >
+            <SectionBadge>
               Featured Agenda
+            </SectionBadge>
+
+            <div className="mt-6">
+
+              <SectionTitle
+                title="Explore The Main"
+                highlight="Conference Sessions"
+              />
+
             </div>
-
-            <h2
-              className="
-                mt-6
-
-                max-w-5xl
-
-                text-5xl
-                md:text-6xl
-                xl:text-7xl
-
-                font-black
-
-                leading-[0.95]
-
-                tracking-[-0.06em]
-
-                text-white
-              "
-            >
-
-              Explore The Main
-              <span className="text-emerald-400">
-                {" "}Conference Sessions
-              </span>
-
-            </h2>
 
           </div>
 
@@ -197,230 +142,187 @@ export default function FeaturedAgenda() {
 
             <motion.div
               key={item.title}
+
               initial={{
                 opacity: 0,
                 y: 30,
               }}
+
               whileInView={{
                 opacity: 1,
                 y: 0,
               }}
+
               transition={{
                 duration: 0.5,
                 delay: index * 0.08,
               }}
+
               viewport={{
                 once: true,
               }}
-              className="
-                group
-
-                relative
-
-                overflow-hidden
-
-                rounded-[32px]
-
-                border
-                border-white/10
-
-                bg-white/[0.04]
-
-                p-8
-
-                backdrop-blur-2xl
-
-                transition-all
-                duration-500
-
-                hover:border-emerald-400/20
-                hover:bg-white/[0.06]
-              "
             >
 
-              {/* glow */}
-              <div
-                className="
-                  absolute
-                  inset-0
+              <GlassCard className="p-8">
 
-                  bg-[radial-gradient(circle_at_top_right,rgba(47,209,123,.10),transparent_35%)]
-                "
-              />
-
-              <div
-                className="
-                  relative
-                  z-10
-
-                  grid
-                  gap-10
-
-                  lg:grid-cols-[220px_1fr_220px]
-                  lg:items-center
-                "
-              >
-
-                {/* time */}
-                <div>
-
-                  <div
-                    className="
-                      inline-flex
-                      items-center
-                      gap-2
-
-                      rounded-2xl
-
-                      border
-                      border-white/10
-
-                      bg-white/[0.05]
-
-                      px-5
-                      py-3
-
-                      text-sm
-                      font-semibold
-
-                      text-emerald-300
-                    "
-                  >
-
-                    <Clock3 size={16} />
-
-                    {item.time}
-
-                  </div>
-
-                </div>
-
-                {/* content */}
-                <div>
-
-                  <div
-                    className="
-                      inline-flex
-
-                      rounded-full
-
-                      border
-                      border-emerald-400/20
-
-                      bg-emerald-400/10
-
-                      px-4
-                      py-2
-
-                      text-[10px]
-                      font-semibold
-
-                      uppercase
-
-                      tracking-[0.24em]
-
-                      text-emerald-300
-                    "
-                  >
-                    {item.category}
-                  </div>
-
-                  <h3
-                    className="
-                      mt-5
-
-                      text-3xl
-                      md:text-4xl
-
-                      font-black
-
-                      leading-tight
-
-                      tracking-[-0.04em]
-
-                      text-white
-                    "
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className="
-                      mt-4
-
-                      text-lg
-
-                      text-slate-400
-                    "
-                  >
-                    {item.speaker}
-                  </p>
-
-                </div>
-
-                {/* location */}
                 <div
                   className="
-                    flex
-                    flex-col
+                    grid
+                    gap-10
 
-                    items-start
-                    lg:items-end
+                    lg:grid-cols-[220px_1fr_220px]
+                    lg:items-center
                   "
                 >
 
-                  <div
-                    className="
-                      flex
-                      items-center
-                      gap-2
+                  {/* time */}
+                  <div>
 
-                      text-sm
-                      font-medium
+                    <div
+                      className="
+                        inline-flex
+                        items-center
+                        gap-2
 
-                      text-slate-300
-                    "
-                  >
+                        rounded-2xl
 
-                    <MapPin size={15} />
+                        border
+                        border-white/10
 
-                    {item.location}
+                        bg-white/[0.05]
+
+                        px-5
+                        py-3
+
+                        text-sm
+                        font-semibold
+
+                        text-emerald-300
+                      "
+                    >
+
+                      <Clock3 size={16} />
+
+                      {item.time}
+
+                    </div>
 
                   </div>
 
-                  <button
+                  {/* content */}
+                  <div>
+
+                    <SectionBadge
+                      className="
+                        px-4
+                        py-2
+
+                        text-[10px]
+
+                        tracking-[0.24em]
+                      "
+                    >
+                      {item.category}
+                    </SectionBadge>
+
+                    <h3
+                      className="
+                        mt-5
+
+                        text-3xl
+                        md:text-4xl
+
+                        font-black
+
+                        leading-tight
+
+                        tracking-[-0.04em]
+
+                        text-white
+                      "
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-4
+
+                        text-lg
+
+                        text-slate-400
+                      "
+                    >
+                      {item.speaker}
+                    </p>
+
+                  </div>
+
+                  {/* location */}
+                  <div
                     className="
-                      mt-8
-
                       flex
-                      items-center
-                      gap-3
+                      flex-col
 
-                      text-sm
-                      font-semibold
-
-                      text-emerald-300
+                      items-start
+                      lg:items-end
                     "
                   >
 
-                    View Session
-
-                    <ArrowUpRight
-                      size={16}
+                    <div
                       className="
-                        transition-transform
-                        duration-300
+                        flex
+                        items-center
+                        gap-2
 
-                        group-hover:translate-x-1
-                        group-hover:-translate-y-1
+                        text-sm
+                        font-medium
+
+                        text-slate-300
                       "
-                    />
+                    >
 
-                  </button>
+                      <MapPin size={15} />
+
+                      {item.location}
+
+                    </div>
+
+                    <button
+                      className="
+                        mt-8
+
+                        flex
+                        items-center
+                        gap-3
+
+                        text-sm
+                        font-semibold
+
+                        text-emerald-300
+                      "
+                    >
+
+                      View Session
+
+                      <ArrowUpRight
+                        size={16}
+                        className="
+                          transition-transform
+                          duration-300
+
+                          group-hover:translate-x-1
+                          group-hover:-translate-y-1
+                        "
+                      />
+
+                    </button>
+
+                  </div>
 
                 </div>
 
-              </div>
+              </GlassCard>
 
             </motion.div>
 
@@ -428,7 +330,7 @@ export default function FeaturedAgenda() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

@@ -1,10 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import {
   ArrowUpRight,
   Sparkles,
 } from "lucide-react";
+
+import {
+  SectionBadge,
+  SectionTitle,
+  GridBackground,
+  GlowOrb,
+  SectionContainer,
+} from "@/components/ui";
 
 const speakers = [
   {
@@ -14,6 +23,7 @@ const speakers = [
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop",
   },
+
   {
     name: "Daniel Kim",
     role: "AI Research Lead",
@@ -21,6 +31,7 @@ const speakers = [
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop",
   },
+
   {
     name: "Emma Williams",
     role: "Founder & CEO",
@@ -28,6 +39,7 @@ const speakers = [
     image:
       "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop",
   },
+
   {
     name: "Michael Chen",
     role: "Head of Robotics",
@@ -35,6 +47,7 @@ const speakers = [
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop",
   },
+
   {
     name: "Sarah Johnson",
     role: "AI Policy Director",
@@ -59,119 +72,62 @@ export default function Speakers() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[400px]
           w-[400px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[340px]
           w-[340px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
+      <GridBackground
         className="
-          absolute
-          inset-0
-
           opacity-[0.04]
 
-          bg-[linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
+          [background-image:linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)]
         "
       />
 
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
         <div className="grid gap-14 lg:grid-cols-2 lg:items-end">
 
           <div>
 
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-2
-
-                rounded-full
-
-                border
-                border-emerald-400/20
-
-                bg-emerald-400/10
-
-                px-5
-                py-2
-
-                text-[11px]
-                font-semibold
-
-                uppercase
-                tracking-[0.28em]
-
-                text-emerald-300
-              "
-            >
+            <SectionBadge>
 
               <Sparkles size={12} />
 
               Global Speakers
 
+            </SectionBadge>
+
+            <div className="mt-6">
+
+              <SectionTitle
+                title="Visionaries Building"
+                highlight="The AI Future"
+              />
+
             </div>
-
-            <h2
-              className="
-                mt-6
-
-                max-w-5xl
-
-                text-5xl
-                md:text-6xl
-                xl:text-7xl
-
-                font-black
-
-                leading-[0.95]
-
-                tracking-[-0.06em]
-
-                text-white
-              "
-            >
-
-              Visionaries Building
-              <span className="text-emerald-400">
-                {" "}The AI Future
-              </span>
-
-            </h2>
 
           </div>
 
@@ -201,29 +157,87 @@ export default function Speakers() {
         </div>
 
         {/* speakers */}
-        <div className="mt-20 overflow-hidden">
+        <div
+          className="
+            relative
+
+            mt-20
+
+            overflow-hidden
+          "
+        >
+
+          {/* left fade */}
+          <div
+            className="
+              pointer-events-none
+
+              absolute
+              left-0
+              top-0
+              z-20
+
+              h-full
+              w-40
+
+              bg-gradient-to-r
+              from-[#07110C]
+              to-transparent
+            "
+          />
+
+          {/* right fade */}
+          <div
+            className="
+              pointer-events-none
+
+              absolute
+              right-0
+              top-0
+              z-20
+
+              h-full
+              w-40
+
+              bg-gradient-to-l
+              from-[#07110C]
+              to-transparent
+            "
+          />
 
           <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-50%" }}
+            animate={{
+              x: ["0%", "-50%"],
+            }}
+
             transition={{
-              duration: 28,
+              duration: 36,
               repeat: Infinity,
               ease: "linear",
             }}
-            className="flex gap-6 w-max"
+
+            className="
+              flex
+              w-max
+              gap-6
+
+              will-change-transform
+            "
           >
 
-            {[...speakers, ...speakers].map((speaker, index) => (
+            {[...speakers, ...speakers].map(
+              (speaker, index) => (
 
               <div
                 key={`${speaker.name}-${index}`}
+
                 className="
                   group
 
                   relative
 
-                  w-[340px]
+                  w-[320px]
+                  shrink-0
 
                   overflow-hidden
 
@@ -241,25 +255,40 @@ export default function Speakers() {
 
                   hover:-translate-y-2
                   hover:border-emerald-400/20
+                  hover:bg-white/[0.06]
                 "
               >
 
                 {/* image */}
-                <div className="relative h-[420px] overflow-hidden">
+                <div
+                  className="
+                    relative
+
+                    h-[420px]
+
+                    overflow-hidden
+                  "
+                >
 
                   <img
                     src={speaker.image}
                     alt={speaker.name}
+
+                    loading="lazy"
+
                     className="
                       h-full
                       w-full
 
                       object-cover
 
+                      transform-gpu
+
                       transition-transform
                       duration-700
+                      ease-out
 
-                      group-hover:scale-105
+                      group-hover:scale-[1.04]
                     "
                   />
 
@@ -271,7 +300,7 @@ export default function Speakers() {
 
                       bg-gradient-to-t
                       from-[#07110C]
-                      via-[#07110C]/30
+                      via-[#07110C]/20
                       to-transparent
                     "
                   />
@@ -297,6 +326,7 @@ export default function Speakers() {
                       font-semibold
 
                       uppercase
+
                       tracking-[0.24em]
 
                       text-white
@@ -338,7 +368,7 @@ export default function Speakers() {
                     {speaker.role}
                   </div>
 
-                  {/* button */}
+                  {/* action */}
                   <div
                     className="
                       mt-8
@@ -379,7 +409,7 @@ export default function Speakers() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

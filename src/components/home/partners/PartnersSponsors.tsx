@@ -2,6 +2,15 @@
 
 import { motion } from "framer-motion";
 
+import {
+  SectionBadge,
+  SectionTitle,
+  GridBackground,
+  GlowOrb,
+  SectionContainer,
+  GlassCard,
+} from "@/components/ui";
+
 const partners = [
   "OPENAI",
   "NVIDIA",
@@ -30,113 +39,66 @@ export default function PartnersSponsors() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[100px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[120px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[280px]
           w-[280px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[120px]
         "
       />
 
       {/* grid */}
-      <div
+      <GridBackground
         className="
-          absolute
-          inset-0
-
           opacity-[0.03]
 
-          bg-[linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
+          [background-image:linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
         "
       />
 
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
         <div className="text-center">
 
-          <div
+          <SectionBadge
             className="
-              inline-flex
-              items-center
-
-              rounded-full
-
-              border
               border-emerald-500/20
 
               bg-white/70
 
-              px-5
-              py-2
-
-              text-[11px]
-              font-semibold
-
-              uppercase
-
-              tracking-[0.28em]
-
               text-emerald-700
-
-              backdrop-blur-xl
             "
           >
             Partners & Sponsors
+          </SectionBadge>
+
+          <div className="mt-6">
+
+            <SectionTitle
+              dark
+              center
+              title="Powered By Global"
+              highlight="Technology Leaders"
+            />
+
           </div>
-
-          <h2
-            className="
-              mt-6
-
-              text-5xl
-              md:text-6xl
-              xl:text-7xl
-
-              font-black
-
-              leading-[0.95]
-
-              tracking-[-0.06em]
-
-              text-[#07110C]
-            "
-          >
-
-            Powered By Global
-            <span className="text-emerald-600">
-              {" "}Technology Leaders
-            </span>
-
-          </h2>
 
           <p
             className="
@@ -162,26 +124,19 @@ export default function PartnersSponsors() {
 
         </div>
 
-        {/* marquee wrapper */}
+        {/* marquee */}
         <div className="mt-20 space-y-6">
 
           {/* row 1 */}
-          <div
+          <GlassCard
             className="
-              relative
-
               overflow-hidden
 
-              rounded-[32px]
-
-              border
               border-white/60
 
               bg-white/60
 
               py-8
-
-              backdrop-blur-2xl
 
               shadow-[0_10px_40px_rgba(15,23,42,.05)]
             "
@@ -195,10 +150,16 @@ export default function PartnersSponsors() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex w-max items-center gap-16"
+              className="
+                flex
+                w-max
+                items-center
+                gap-16
+              "
             >
 
-              {[...partners, ...partners].map((item, index) => (
+              {[...partners, ...partners].map(
+                (item, index) => (
 
                 <div
                   key={`${item}-${index}`}
@@ -242,25 +203,18 @@ export default function PartnersSponsors() {
 
             </motion.div>
 
-          </div>
+          </GlassCard>
 
           {/* row 2 */}
-          <div
+          <GlassCard
             className="
-              relative
-
               overflow-hidden
 
-              rounded-[32px]
-
-              border
               border-white/60
 
               bg-white/50
 
               py-8
-
-              backdrop-blur-2xl
 
               shadow-[0_10px_40px_rgba(15,23,42,.05)]
             "
@@ -274,10 +228,16 @@ export default function PartnersSponsors() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex w-max items-center gap-16"
+              className="
+                flex
+                w-max
+                items-center
+                gap-16
+              "
             >
 
-              {[...partners, ...partners].map((item, index) => (
+              {[...partners, ...partners].map(
+                (item, index) => (
 
                 <div
                   key={`${item}-bottom-${index}`}
@@ -321,11 +281,11 @@ export default function PartnersSponsors() {
 
             </motion.div>
 
-          </div>
+          </GlassCard>
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );
