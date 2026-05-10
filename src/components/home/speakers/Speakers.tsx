@@ -55,6 +55,7 @@ const speakers = [
 ];
 
 export default function Speakers() {
+
   return (
     <section
       className="
@@ -116,9 +117,11 @@ export default function Speakers() {
           <div>
 
             <SectionBadge dark>
+
               <Sparkles size={12} />
 
               Global Speakers
+
             </SectionBadge>
 
             <div className="mt-6">
@@ -156,7 +159,7 @@ export default function Speakers() {
 
         </div>
 
-        {/* speakers */}
+        {/* slider */}
         <div
           className="
             relative
@@ -211,325 +214,196 @@ export default function Speakers() {
             "
           />
 
-          {/* desktop marquee */}
-          <div
-            className="
-              hidden
-              gap-6
+          {/* wrapper */}
+          <div className="marquee-wrapper">
 
-              lg:flex
-              lg:w-max
+            {/* track */}
+            <div className="marquee-track">
 
-              animate-[marquee_36s_linear_infinite]
-            "
-          >
+              {[...speakers, ...speakers].map(
+                (speaker, index) => (
 
-            {[...speakers, ...speakers].map(
-              (speaker, index) => (
+                <GlassCard
+                  key={`${speaker.name}-${index}`}
+                  dark
 
-              <GlassCard
-                key={`${speaker.name}-${index}`}
-                dark
-                className="
-                  group
-
-                  relative
-
-                  w-[320px]
-                  shrink-0
-
-                  overflow-hidden
-
-                  rounded-[36px]
-
-                  p-0
-                "
-              >
-
-                {/* image */}
-                <div
                   className="
+                    group
+
                     relative
 
-                    h-[420px]
+                    w-[320px]
+                    shrink-0
 
                     overflow-hidden
+
+                    rounded-[36px]
+
+                    p-0
                   "
                 >
 
-                  <img
-                    src={speaker.image}
-                    alt={speaker.name}
-                    loading="lazy"
-
-                    className="
-                      h-full
-                      w-full
-
-                      object-cover
-
-                      transition-transform
-                      duration-700
-
-                      group-hover:scale-[1.04]
-                    "
-                  />
-
-                  {/* overlay */}
+                  {/* image */}
                   <div
                     className="
-                      absolute
-                      inset-0
+                      relative
 
-                      bg-gradient-to-t
-                      from-[#07110C]
-                      via-[#07110C]/20
-                      to-transparent
-                    "
-                  />
+                      h-[420px]
 
-                  {/* company */}
-                  <div
-                    className="
-                      absolute
-                      left-6
-                      top-6
-
-                      rounded-full
-
-                      border
-                      border-white/10
-
-                      bg-black/30
-
-                      px-4
-                      py-2
-
-                      text-[11px]
-                      font-semibold
-
-                      uppercase
-
-                      tracking-[0.24em]
-
-                      text-white
-
-                      backdrop-blur-xl
-                    "
-                  >
-                    {speaker.company}
-                  </div>
-
-                </div>
-
-                {/* content */}
-                <div className="relative p-8">
-
-                  <div
-                    className="
-                      text-3xl
-
-                      font-black
-
-                      tracking-[-0.04em]
-
-                      text-white
-                    "
-                  >
-                    {speaker.name}
-                  </div>
-
-                  <div
-                    className="
-                      mt-3
-
-                      text-lg
-
-                      text-slate-400
-                    "
-                  >
-                    {speaker.role}
-                  </div>
-
-                  {/* divider */}
-                  <div
-                    className="
-                      mt-8
-
-                      h-px
-                      w-full
-
-                      bg-gradient-to-r
-                      from-emerald-400/30
-                      to-transparent
-                    "
-                  />
-
-                  {/* action */}
-                  <div
-                    className="
-                      mt-8
-
-                      flex
-                      items-center
-                      gap-3
-
-                      text-sm
-                      font-semibold
-
-                      text-emerald-300
+                      overflow-hidden
                     "
                   >
 
-                    View Speaker
+                    <img
+                      src={speaker.image}
+                      alt={speaker.name}
 
-                    <ArrowUpRight
-                      size={16}
+                      loading="lazy"
+
                       className="
-                        transition-transform
-                        duration-300
+                        h-full
+                        w-full
 
-                        group-hover:translate-x-1
-                        group-hover:-translate-y-1
+                        object-cover
+
+                        transition-transform
+                        duration-700
+
+                        group-hover:scale-[1.04]
                       "
                     />
 
+                    {/* overlay */}
+                    <div
+                      className="
+                        absolute
+                        inset-0
+
+                        bg-gradient-to-t
+                        from-[#07110C]
+                        via-[#07110C]/20
+                        to-transparent
+                      "
+                    />
+
+                    {/* company */}
+                    <div
+                      className="
+                        absolute
+                        left-6
+                        top-6
+
+                        rounded-full
+
+                        border
+                        border-white/10
+
+                        bg-black/30
+
+                        px-4
+                        py-2
+
+                        text-[11px]
+                        font-semibold
+
+                        uppercase
+
+                        tracking-[0.24em]
+
+                        text-white
+
+                        backdrop-blur-xl
+                      "
+                    >
+                      {speaker.company}
+                    </div>
+
                   </div>
 
-                </div>
+                  {/* content */}
+                  <div className="relative p-8">
 
-              </GlassCard>
+                    {/* name */}
+                    <div
+                      className="
+                        text-3xl
 
-            ))}
+                        font-black
 
-          </div>
+                        tracking-[-0.04em]
 
-          {/* mobile grid */}
-          <div
-            className="
-              grid
-              gap-6
+                        text-white
+                      "
+                    >
+                      {speaker.name}
+                    </div>
 
-              md:grid-cols-2
+                    {/* role */}
+                    <div
+                      className="
+                        mt-3
 
-              lg:hidden
-            "
-          >
+                        text-lg
 
-            {speakers.map((speaker) => (
+                        text-slate-400
+                      "
+                    >
+                      {speaker.role}
+                    </div>
 
-              <GlassCard
-                key={speaker.name}
-                dark
-                className="
-                  overflow-hidden
+                    {/* divider */}
+                    <div
+                      className="
+                        mt-8
 
-                  rounded-[32px]
+                        h-px
+                        w-full
 
-                  p-0
-                "
-              >
+                        bg-gradient-to-r
+                        from-emerald-400/30
+                        via-white/5
+                        to-transparent
+                      "
+                    />
 
-                {/* image */}
-                <div
-                  className="
-                    relative
+                    {/* action */}
+                    <div
+                      className="
+                        mt-8
 
-                    h-[380px]
+                        flex
+                        items-center
+                        gap-3
 
-                    overflow-hidden
-                  "
-                >
+                        text-sm
+                        font-semibold
 
-                  <img
-                    src={speaker.image}
-                    alt={speaker.name}
-                    loading="lazy"
+                        text-emerald-300
+                      "
+                    >
 
-                    className="
-                      h-full
-                      w-full
+                      View Speaker
 
-                      object-cover
-                    "
-                  />
+                      <ArrowUpRight
+                        size={16}
+                        className="
+                          transition-transform
+                          duration-300
 
-                  <div
-                    className="
-                      absolute
-                      inset-0
+                          group-hover:translate-x-1
+                          group-hover:-translate-y-1
+                        "
+                      />
 
-                      bg-gradient-to-t
-                      from-[#07110C]
-                      via-[#07110C]/20
-                      to-transparent
-                    "
-                  />
+                    </div>
 
-                </div>
-
-                {/* content */}
-                <div className="p-7">
-
-                  <div
-                    className="
-                      text-2xl
-
-                      font-black
-
-                      tracking-[-0.04em]
-
-                      text-white
-                    "
-                  >
-                    {speaker.name}
                   </div>
 
-                  <div
-                    className="
-                      mt-2
+                </GlassCard>
 
-                      text-slate-400
-                    "
-                  >
-                    {speaker.role}
-                  </div>
+              ))}
 
-                  <div
-                    className="
-                      mt-5
-
-                      inline-flex
-                      items-center
-
-                      rounded-full
-
-                      border
-                      border-white/10
-
-                      bg-white/[0.04]
-
-                      px-4
-                      py-2
-
-                      text-[11px]
-                      font-semibold
-
-                      uppercase
-
-                      tracking-[0.24em]
-
-                      text-emerald-300
-                    "
-                  >
-                    {speaker.company}
-                  </div>
-
-                </div>
-
-              </GlassCard>
-
-            ))}
+            </div>
 
           </div>
 

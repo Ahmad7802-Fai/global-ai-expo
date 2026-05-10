@@ -315,3 +315,31 @@ a{
   box-shadow:
     0 10px 30px rgba(16, 185, 129, 0.10);
 }
+
+.marquee-wrapper {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+
+  width: max-content;
+
+  gap: 24px;
+
+  animation: marqueeLeft 40s linear infinite;
+
+  will-change: transform;
+}

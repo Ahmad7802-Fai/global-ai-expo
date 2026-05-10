@@ -11,12 +11,13 @@ import {
 } from "@react-three/drei";
 
 import {
+  memo,
   useRef,
 } from "react";
 
 import * as THREE from "three";
 
-function Orb() {
+function OrbMesh() {
 
   const meshRef =
     useRef<THREE.Mesh>(null);
@@ -26,24 +27,24 @@ function Orb() {
     if (!meshRef.current) return;
 
     meshRef.current.rotation.y =
-      state.clock.elapsedTime * 0.25;
+      state.clock.elapsedTime * 0.22;
 
     meshRef.current.rotation.x =
-      state.clock.elapsedTime * 0.08;
+      state.clock.elapsedTime * 0.06;
 
   });
 
   return (
     <Float
-      speed={2}
-      rotationIntensity={1.4}
-      floatIntensity={2}
+      speed={1.8}
+      rotationIntensity={1}
+      floatIntensity={1.8}
     >
 
       <mesh ref={meshRef}>
 
         <icosahedronGeometry
-          args={[1.6, 32]}
+          args={[1.45, 12]}
         />
 
         <MeshDistortMaterial
@@ -51,19 +52,19 @@ function Orb() {
 
           emissive="#10B981"
 
-          emissiveIntensity={1.5}
+          emissiveIntensity={1.2}
 
-          roughness={0}
+          roughness={0.08}
 
-          metalness={0.4}
+          metalness={0.35}
 
-          distort={0.45}
+          distort={0.32}
 
-          speed={2.5}
+          speed={1.8}
 
           transparent
 
-          opacity={0.9}
+          opacity={0.88}
         />
 
       </mesh>
@@ -72,49 +73,64 @@ function Orb() {
   );
 }
 
+const MemoOrbMesh = memo(OrbMesh);
+
 export default function AIOrb() {
   return (
     <div
       className="
         absolute
-        right-[-120px]
+        right-[-80px]
         top-1/2
 
         z-[4]
 
-        h-[700px]
-        w-[700px]
+        h-[520px]
+        w-[520px]
 
         -translate-y-1/2
 
         opacity-90
+
+        pointer-events-none
+
+        hidden
+        xl:block
       "
     >
 
       <Canvas
+        dpr={[1, 1.5]}
+
+        gl={{
+          antialias: false,
+          alpha: true,
+          powerPreference: "high-performance",
+        }}
+
         camera={{
           position: [0, 0, 4],
-          fov: 45,
+          fov: 42,
         }}
       >
 
         {/* lighting */}
-        <ambientLight intensity={1.4} />
+        <ambientLight intensity={1.2} />
 
         <directionalLight
           position={[3, 3, 3]}
-          intensity={2}
+          intensity={1.5}
           color="#6EE7B7"
         />
 
         <pointLight
           position={[-4, -2, 2]}
-          intensity={3}
+          intensity={2}
           color="#22D3EE"
         />
 
         {/* orb */}
-        <Orb />
+        <MemoOrbMesh />
 
       </Canvas>
 
@@ -124,9 +140,9 @@ export default function AIOrb() {
           absolute
           inset-0
 
-          bg-[radial-gradient(circle_at_center,rgba(16,185,129,.22),transparent_60%)]
+          bg-[radial-gradient(circle_at_center,rgba(16,185,129,.18),transparent_65%)]
 
-          blur-[80px]
+          blur-[70px]
         "
       />
 
