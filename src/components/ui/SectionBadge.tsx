@@ -1,5 +1,3 @@
-"use client";
-
 import { ReactNode } from "react";
 
 import { LucideIcon } from "lucide-react";
@@ -23,7 +21,6 @@ export default function SectionBadge({
   className = "",
   icon: Icon,
 }: SectionBadgeProps) {
-
   return (
     <div
       className={`
@@ -32,7 +29,6 @@ export default function SectionBadge({
         gap-3
 
         rounded-full
-
         border
 
         px-5
@@ -42,13 +38,9 @@ export default function SectionBadge({
         font-semibold
 
         uppercase
-
         tracking-[0.28em]
 
         backdrop-blur-xl
-
-        transition-all
-        duration-300
 
         ${
           dark
@@ -66,7 +58,7 @@ export default function SectionBadge({
 
         ${
           center
-            ? "mx-auto flex"
+            ? "mx-auto"
             : ""
         }
 

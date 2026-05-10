@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   ArrowUpRight,
   Sparkles,
@@ -13,6 +9,7 @@ import {
   GridBackground,
   GlowOrb,
   SectionContainer,
+  GlassCard,
 } from "@/components/ui";
 
 const speakers = [
@@ -62,9 +59,7 @@ export default function Speakers() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[#07110C]
@@ -108,16 +103,22 @@ export default function Speakers() {
       <SectionContainer>
 
         {/* top */}
-        <div className="grid gap-14 lg:grid-cols-2 lg:items-end">
+        <div
+          className="
+            grid
+            gap-14
+
+            lg:grid-cols-2
+            lg:items-end
+          "
+        >
 
           <div>
 
-            <SectionBadge>
-
+            <SectionBadge dark>
               <Sparkles size={12} />
 
               Global Speakers
-
             </SectionBadge>
 
             <div className="mt-6">
@@ -138,7 +139,6 @@ export default function Speakers() {
                 max-w-xl
 
                 text-lg
-
                 leading-9
 
                 text-slate-400
@@ -167,7 +167,7 @@ export default function Speakers() {
           "
         >
 
-          {/* left fade */}
+          {/* fade left */}
           <div
             className="
               pointer-events-none
@@ -177,16 +177,19 @@ export default function Speakers() {
               top-0
               z-20
 
+              hidden
               h-full
               w-40
 
               bg-gradient-to-r
               from-[#07110C]
               to-transparent
+
+              lg:block
             "
           />
 
-          {/* right fade */}
+          {/* fade right */}
           <div
             className="
               pointer-events-none
@@ -196,41 +199,37 @@ export default function Speakers() {
               top-0
               z-20
 
+              hidden
               h-full
               w-40
 
               bg-gradient-to-l
               from-[#07110C]
               to-transparent
+
+              lg:block
             "
           />
 
-          <motion.div
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-
-            transition={{
-              duration: 36,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-
+          {/* desktop marquee */}
+          <div
             className="
-              flex
-              w-max
+              hidden
               gap-6
 
-              will-change-transform
+              lg:flex
+              lg:w-max
+
+              animate-[marquee_36s_linear_infinite]
             "
           >
 
             {[...speakers, ...speakers].map(
               (speaker, index) => (
 
-              <div
+              <GlassCard
                 key={`${speaker.name}-${index}`}
-
+                dark
                 className="
                   group
 
@@ -243,19 +242,7 @@ export default function Speakers() {
 
                   rounded-[36px]
 
-                  border
-                  border-white/10
-
-                  bg-white/[0.04]
-
-                  backdrop-blur-xl
-
-                  transition-all
-                  duration-500
-
-                  hover:-translate-y-2
-                  hover:border-emerald-400/20
-                  hover:bg-white/[0.06]
+                  p-0
                 "
               >
 
@@ -273,7 +260,6 @@ export default function Speakers() {
                   <img
                     src={speaker.image}
                     alt={speaker.name}
-
                     loading="lazy"
 
                     className="
@@ -282,11 +268,8 @@ export default function Speakers() {
 
                       object-cover
 
-                      transform-gpu
-
                       transition-transform
                       duration-700
-                      ease-out
 
                       group-hover:scale-[1.04]
                     "
@@ -368,6 +351,20 @@ export default function Speakers() {
                     {speaker.role}
                   </div>
 
+                  {/* divider */}
+                  <div
+                    className="
+                      mt-8
+
+                      h-px
+                      w-full
+
+                      bg-gradient-to-r
+                      from-emerald-400/30
+                      to-transparent
+                    "
+                  />
+
                   {/* action */}
                   <div
                     className="
@@ -401,11 +398,140 @@ export default function Speakers() {
 
                 </div>
 
-              </div>
+              </GlassCard>
 
             ))}
 
-          </motion.div>
+          </div>
+
+          {/* mobile grid */}
+          <div
+            className="
+              grid
+              gap-6
+
+              md:grid-cols-2
+
+              lg:hidden
+            "
+          >
+
+            {speakers.map((speaker) => (
+
+              <GlassCard
+                key={speaker.name}
+                dark
+                className="
+                  overflow-hidden
+
+                  rounded-[32px]
+
+                  p-0
+                "
+              >
+
+                {/* image */}
+                <div
+                  className="
+                    relative
+
+                    h-[380px]
+
+                    overflow-hidden
+                  "
+                >
+
+                  <img
+                    src={speaker.image}
+                    alt={speaker.name}
+                    loading="lazy"
+
+                    className="
+                      h-full
+                      w-full
+
+                      object-cover
+                    "
+                  />
+
+                  <div
+                    className="
+                      absolute
+                      inset-0
+
+                      bg-gradient-to-t
+                      from-[#07110C]
+                      via-[#07110C]/20
+                      to-transparent
+                    "
+                  />
+
+                </div>
+
+                {/* content */}
+                <div className="p-7">
+
+                  <div
+                    className="
+                      text-2xl
+
+                      font-black
+
+                      tracking-[-0.04em]
+
+                      text-white
+                    "
+                  >
+                    {speaker.name}
+                  </div>
+
+                  <div
+                    className="
+                      mt-2
+
+                      text-slate-400
+                    "
+                  >
+                    {speaker.role}
+                  </div>
+
+                  <div
+                    className="
+                      mt-5
+
+                      inline-flex
+                      items-center
+
+                      rounded-full
+
+                      border
+                      border-white/10
+
+                      bg-white/[0.04]
+
+                      px-4
+                      py-2
+
+                      text-[11px]
+                      font-semibold
+
+                      uppercase
+
+                      tracking-[0.24em]
+
+                      text-emerald-300
+                    "
+                  >
+                    {speaker.company}
+                  </div>
+
+                </div>
+
+              </GlassCard>
+
+            ))}
+
+          </div>
 
         </div>
 

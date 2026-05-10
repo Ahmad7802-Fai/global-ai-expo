@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Building2,
   BriefcaseBusiness,
@@ -64,9 +60,7 @@ export default function Ecosystem() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#DCEEDF_0%,#C5E7CF_50%,#A8DDB8_100%)]
@@ -100,6 +94,7 @@ export default function Ecosystem() {
 
       {/* grid */}
       <GridBackground
+        dark
         className="
           opacity-[0.03]
 
@@ -110,13 +105,19 @@ export default function Ecosystem() {
       <SectionContainer>
 
         {/* top */}
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
+        <div
+          className="
+            grid
+            gap-12
+
+            lg:grid-cols-2
+            lg:items-end
+          "
+        >
 
           <div>
 
-            <SectionBadge
-              dark
-            >
+            <SectionBadge dark>
               AI Ecosystem Network
             </SectionBadge>
 
@@ -139,7 +140,6 @@ export default function Ecosystem() {
                 max-w-xl
 
                 text-lg
-
                 leading-9
 
                 text-slate-700
@@ -170,33 +170,17 @@ export default function Ecosystem() {
           "
         >
 
-          {items.map((item, index) => {
+          {items.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <div
                 key={item.title}
-
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-
-                viewport={{
-                  once: true,
-                }}
+                className="
+                  animate-[fadeUp_.6s_ease]
+                "
               >
 
                 <GlassCard
@@ -209,14 +193,21 @@ export default function Ecosystem() {
 
                     overflow-hidden
 
+                    border-black/5
+
+                    bg-white/65
+
                     p-10
+
+                    backdrop-blur-xl
 
                     transition-all
                     duration-500
 
                     hover:-translate-y-2
-                    hover:bg-white/70
-                    hover:shadow-[0_20px_60px_rgba(16,185,129,.18)]
+                    hover:border-emerald-500/20
+                    hover:bg-white
+                    hover:shadow-[0_20px_60px_rgba(16,185,129,.14)]
                   "
                 >
 
@@ -251,6 +242,9 @@ export default function Ecosystem() {
 
                       rounded-2xl
 
+                      border
+                      border-emerald-500/10
+
                       bg-emerald-50
 
                       text-emerald-600
@@ -268,11 +262,11 @@ export default function Ecosystem() {
 
                       mt-10
 
-                      text-3xl
+                      text-[30px]
 
                       font-black
 
-                      tracking-[-0.03em]
+                      tracking-[-0.04em]
 
                       text-[#07111F]
                     "
@@ -280,12 +274,26 @@ export default function Ecosystem() {
                     {item.title}
                   </h3>
 
+                  {/* divider */}
+                  <div
+                    className="
+                      mt-6
+
+                      h-px
+                      w-full
+
+                      bg-gradient-to-r
+                      from-emerald-500/50
+                      to-transparent
+                    "
+                  />
+
                   {/* desc */}
                   <p
                     className="
                       relative
 
-                      mt-5
+                      mt-6
 
                       leading-8
 
@@ -331,7 +339,7 @@ export default function Ecosystem() {
 
                 </GlassCard>
 
-              </motion.div>
+              </div>
 
             );
           })}

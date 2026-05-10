@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Globe2,
   Users,
@@ -23,44 +19,32 @@ import {
 const stats = [
   {
     label: "Countries",
-
     value: "80+",
-
     icon: Globe2,
-
     description:
       "Global participation from AI ecosystems worldwide.",
   },
 
   {
     label: "Attendees",
-
     value: "25K+",
-
     icon: Users,
-
     description:
       "Founders, innovators, investors, and enterprises.",
   },
 
   {
     label: "Companies",
-
     value: "500+",
-
     icon: Building2,
-
     description:
       "Enterprise exhibitors and AI technology leaders.",
   },
 
   {
     label: "Startups",
-
     value: "300+",
-
     icon: Rocket,
-
     description:
       "Emerging startups shaping future intelligence.",
   },
@@ -73,7 +57,8 @@ export default function GlobalImpact() {
       className="
         relative
         overflow-hidden
-        py-32
+        py-24
+        md:py-32
 
         bg-[linear-gradient(180deg,#F7FBF8_0%,#ECF6F0_100%)]
       "
@@ -119,20 +104,25 @@ export default function GlobalImpact() {
           "
         >
 
-          <SectionBadge
-            icon={Sparkles}
-            className="mx-auto"
-          >
+          <SectionBadge className="mx-auto">
+
+            <Sparkles size={14} />
+
             Global Impact
+
           </SectionBadge>
 
-          <SectionTitle dark>
+          <SectionTitle
+            dark
+            center
+            className="mt-7"
+          >
 
             Connecting The World's
 
             <br />
 
-            <GradientText>
+            <GradientText glow={false}>
               AI Ecosystem
             </GradientText>
 
@@ -146,7 +136,6 @@ export default function GlobalImpact() {
               max-w-3xl
 
               text-lg
-
               leading-9
 
               text-slate-700
@@ -175,179 +164,147 @@ export default function GlobalImpact() {
           "
         >
 
-          {stats.map((item, index) => {
+          {stats.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <GlassCard
                 key={item.label}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                viewport={{
-                  once: true,
-                }}
+                className="
+                  group
+
+                  h-full
+
+                  border-black/5
+
+                  bg-white/80
+
+                  p-8
+
+                  shadow-[0_10px_40px_rgba(15,23,42,.05)]
+
+                  hover:border-emerald-500/20
+                  hover:bg-white
+                  hover:shadow-[0_20px_70px_rgba(16,185,129,.10)]
+                "
               >
 
-                <GlassCard
+                {/* top line */}
+                <div
                   className="
-                    group
+                    absolute
+                    inset-x-0
+                    top-0
 
-                    relative
+                    h-px
 
-                    h-full
+                    bg-gradient-to-r
+                    from-transparent
+                    via-emerald-500/40
+                    to-transparent
+                  "
+                />
 
-                    overflow-hidden
+                {/* icon */}
+                <div
+                  className="
+                    flex
+                    h-16
+                    w-16
+                    items-center
+                    justify-center
 
-                    rounded-[32px]
+                    rounded-2xl
 
-                    border-black/5
+                    border
+                    border-emerald-500/10
 
-                    bg-white/80
+                    bg-emerald-500/10
 
-                    p-8
+                    text-emerald-700
+
+                    shadow-[0_10px_30px_rgba(16,185,129,.08)]
 
                     transition-all
                     duration-500
 
-                    hover:-translate-y-2
-                    hover:border-emerald-500/20
-                    hover:bg-white
-                    hover:shadow-[0_20px_70px_rgba(16,185,129,.10)]
+                    group-hover:scale-110
+                    group-hover:rotate-3
                   "
                 >
 
-                  {/* glow */}
-                  <div
-                    className="
-                      absolute
-                      inset-0
+                  <Icon size={28} />
 
-                      opacity-0
+                </div>
 
-                      bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,.10),transparent_35%)]
+                {/* number */}
+                <div
+                  className="
+                    mt-10
 
-                      transition-opacity
-                      duration-500
+                    text-6xl
 
-                      group-hover:opacity-100
-                    "
-                  />
+                    font-black
 
-                  {/* top line */}
-                  <div
-                    className="
-                      absolute
-                      inset-x-0
-                      top-0
+                    leading-none
 
-                      h-px
+                    tracking-[-0.06em]
 
-                      bg-gradient-to-r
-                      from-transparent
-                      via-emerald-500/40
-                      to-transparent
-                    "
-                  />
+                    text-[#07110C]
+                  "
+                >
+                  {item.value}
+                </div>
 
-                  <div className="relative z-10">
+                {/* label */}
+                <div
+                  className="
+                    mt-4
 
-                    {/* icon */}
-                    <div
-                      className="
-                        flex
-                        h-16
-                        w-16
-                        items-center
-                        justify-center
+                    text-sm
+                    font-bold
 
-                        rounded-2xl
+                    uppercase
 
-                        border
-                        border-emerald-500/10
+                    tracking-[0.24em]
 
-                        bg-emerald-500/10
+                    text-emerald-700
+                  "
+                >
+                  {item.label}
+                </div>
 
-                        text-emerald-700
+                {/* divider */}
+                <div
+                  className="
+                    mt-6
 
-                        transition-all
-                        duration-500
+                    h-px
+                    w-full
 
-                        group-hover:scale-110
-                        group-hover:rotate-3
-                      "
-                    >
+                    bg-gradient-to-r
+                    from-emerald-500/30
+                    via-black/5
+                    to-transparent
+                  "
+                />
 
-                      <Icon size={28} />
+                {/* desc */}
+                <p
+                  className="
+                    mt-6
 
-                    </div>
+                    leading-8
 
-                    {/* number */}
-                    <div
-                      className="
-                        mt-10
+                    text-slate-600
+                  "
+                >
+                  {item.description}
+                </p>
 
-                        text-6xl
-
-                        font-black
-
-                        leading-none
-
-                        tracking-[-0.06em]
-
-                        text-[#07110C]
-                      "
-                    >
-                      {item.value}
-                    </div>
-
-                    {/* label */}
-                    <div
-                      className="
-                        mt-4
-
-                        text-sm
-                        font-bold
-
-                        uppercase
-
-                        tracking-[0.24em]
-
-                        text-emerald-700
-                      "
-                    >
-                      {item.label}
-                    </div>
-
-                    {/* desc */}
-                    <p
-                      className="
-                        mt-6
-
-                        leading-8
-
-                        text-slate-600
-                      "
-                    >
-                      {item.description}
-                    </p>
-
-                  </div>
-
-                </GlassCard>
-
-              </motion.div>
+              </GlassCard>
 
             );
           })}

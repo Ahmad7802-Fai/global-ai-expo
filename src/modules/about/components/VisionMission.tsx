@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Eye,
   Target,
@@ -59,7 +55,8 @@ export default function VisionMission() {
       className="
         relative
         overflow-hidden
-        py-32
+        py-24
+        md:py-32
 
         bg-[#07110C]
       "
@@ -112,6 +109,7 @@ export default function VisionMission() {
               text-white
             "
           >
+
             Powering The Next
 
             <br />
@@ -150,197 +148,193 @@ export default function VisionMission() {
             mt-20
 
             grid
-            gap-8
+            gap-6
+            lg:gap-8
 
             lg:grid-cols-2
           "
         >
 
-          {items.map((item, index) => {
+          {items.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <GlassCard
                 key={item.title}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.12,
-                }}
-                viewport={{
-                  once: true,
-                }}
+                dark
+                className="
+                  group
+
+                  h-full
+
+                  rounded-[36px]
+
+                  p-8
+                  md:p-10
+                "
               >
 
-                <GlassCard
-                  dark
+                {/* top line */}
+                <div
                   className="
-                    h-full
+                    absolute
+                    inset-x-0
+                    top-0
 
-                    p-10
+                    h-px
 
-                    rounded-[36px]
+                    bg-gradient-to-r
+                    from-transparent
+                    via-emerald-400/40
+                    to-transparent
+                  "
+                />
+
+                {/* icon */}
+                <div
+                  className="
+                    flex
+                    h-16
+                    w-16
+                    items-center
+                    justify-center
+
+                    rounded-2xl
+
+                    border
+                    border-white/10
+
+                    bg-white/[0.05]
+
+                    text-emerald-300
+
+                    shadow-[0_10px_30px_rgba(16,185,129,.10)]
+
+                    transition-all
+                    duration-500
+
+                    group-hover:scale-105
+                    group-hover:rotate-3
                   "
                 >
 
-                  {/* content */}
-                  <div className="relative z-10">
+                  <Icon size={30} />
 
-                    {/* icon */}
+                </div>
+
+                {/* title */}
+                <h3
+                  className="
+                    mt-10
+
+                    text-[34px]
+                    md:text-[42px]
+
+                    font-black
+
+                    leading-none
+
+                    tracking-[-0.05em]
+
+                    text-white
+                  "
+                >
+                  {item.title}
+                </h3>
+
+                {/* desc */}
+                <p
+                  className="
+                    mt-6
+
+                    leading-8
+
+                    text-slate-400
+                  "
+                >
+
+                  {item.description}
+
+                </p>
+
+                {/* divider */}
+                <div
+                  className="
+                    mt-10
+
+                    h-px
+                    w-full
+
+                    bg-gradient-to-r
+                    from-emerald-400/30
+                    via-white/10
+                    to-transparent
+                  "
+                />
+
+                {/* points */}
+                <div className="mt-10 space-y-5">
+
+                  {item.points.map((point) => (
+
                     <div
+                      key={point}
                       className="
                         flex
-                        h-16
-                        w-16
                         items-center
-                        justify-center
-
-                        rounded-2xl
-
-                        border
-                        border-white/10
-
-                        bg-white/[0.05]
-
-                        text-emerald-300
-
-                        shadow-[0_10px_30px_rgba(16,185,129,.10)]
-
-                        transition-all
-                        duration-500
-
-                        group-hover:scale-110
-                        group-hover:rotate-3
+                        gap-4
                       "
                     >
 
-                      <Icon size={30} />
+                      <div
+                        className="
+                          relative
 
-                    </div>
+                          h-2.5
+                          w-2.5
 
-                    {/* title */}
-                    <h3
-                      className="
-                        mt-10
+                          rounded-full
 
-                        text-[42px]
-
-                        font-black
-
-                        leading-none
-
-                        tracking-[-0.05em]
-
-                        text-white
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* desc */}
-                    <p
-                      className="
-                        mt-6
-
-                        leading-8
-
-                        text-slate-400
-                      "
-                    >
-
-                      {item.description}
-
-                    </p>
-
-                    {/* divider */}
-                    <div
-                      className="
-                        mt-10
-
-                        h-px
-                        w-full
-
-                        bg-gradient-to-r
-                        from-emerald-400/30
-                        via-white/10
-                        to-transparent
-                      "
-                    />
-
-                    {/* points */}
-                    <div className="mt-10 space-y-5">
-
-                      {item.points.map((point) => (
+                          bg-emerald-400
+                        "
+                      >
 
                         <div
-                          key={point}
                           className="
-                            flex
-                            items-center
-                            gap-4
+                            absolute
+                            inset-0
+
+                            rounded-full
+
+                            bg-emerald-400
+
+                            blur-[6px]
+
+                            opacity-80
                           "
-                        >
+                        />
 
-                          <div
-                            className="
-                              relative
+                      </div>
 
-                              h-2.5
-                              w-2.5
+                      <span
+                        className="
+                          text-[15px]
 
-                              rounded-full
-
-                              bg-emerald-400
-                            "
-                          >
-
-                            <div
-                              className="
-                                absolute
-                                inset-0
-
-                                rounded-full
-
-                                bg-emerald-400
-
-                                blur-[6px]
-
-                                opacity-80
-                              "
-                            />
-
-                          </div>
-
-                          <span
-                            className="
-                              text-[15px]
-
-                              text-slate-300
-                            "
-                          >
-                            {point}
-                          </span>
-
-                        </div>
-
-                      ))}
+                          text-slate-300
+                        "
+                      >
+                        {point}
+                      </span>
 
                     </div>
 
-                  </div>
+                  ))}
 
-                </GlassCard>
+                </div>
 
-              </motion.div>
+              </GlassCard>
 
             );
           })}

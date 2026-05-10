@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Users,
   BriefcaseBusiness,
@@ -8,6 +5,15 @@ import {
   ArrowUpRight,
   Check,
 } from "lucide-react";
+
+import {
+  SectionBadge,
+  SectionTitle,
+  GridBackground,
+  GlowOrb,
+  SectionContainer,
+  GlassCard,
+} from "@/components/ui";
 
 const features = [
   "Private investor meetings",
@@ -22,9 +28,7 @@ export default function InvestorBusinessMatching() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#F7FBF8_0%,#E9F5EE_45%,#DDEFE4_100%)]
@@ -32,132 +36,68 @@ export default function InvestorBusinessMatching() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[380px]
           w-[380px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
+      <GridBackground
+        dark
         className="
-          absolute
-          inset-0
-
           opacity-[0.03]
-
-          bg-[linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
         "
       />
 
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div
+          className="
+            grid
+            gap-10
+
+            lg:grid-cols-2
+            lg:items-center
+          "
+        >
 
           {/* LEFT */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -40,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.6,
-            }}
-            viewport={{
-              once: true,
-            }}
+          <div
+            className="animate-[fadeUp_.7s_ease]"
           >
 
-            <div
-              className="
-                inline-flex
-                items-center
-
-                rounded-full
-
-                border
-                border-emerald-500/20
-
-                bg-white/70
-
-                px-5
-                py-2
-
-                text-[11px]
-                font-semibold
-
-                uppercase
-
-                tracking-[0.28em]
-
-                text-emerald-700
-
-                backdrop-blur-xl
-              "
-            >
+            <SectionBadge dark>
               Investor & Networking
+            </SectionBadge>
+
+            <div className="mt-6">
+
+              <SectionTitle
+                dark
+                title="Connect Investors,"
+                highlight="Startups & Enterprises"
+              />
+
             </div>
-
-            <h2
-              className="
-                mt-6
-
-                max-w-3xl
-
-                text-5xl
-                md:text-6xl
-                xl:text-7xl
-
-                font-black
-
-                leading-[0.95]
-
-                tracking-[-0.06em]
-
-                text-[#07110C]
-              "
-            >
-
-              Connect Investors,
-              <span className="text-emerald-600">
-                {" "}Startups & Enterprises
-              </span>
-
-            </h2>
 
             <p
               className="
@@ -166,7 +106,6 @@ export default function InvestorBusinessMatching() {
                 max-w-2xl
 
                 text-lg
-
                 leading-9
 
                 text-slate-700
@@ -208,6 +147,8 @@ export default function InvestorBusinessMatching() {
                       bg-emerald-500
 
                       text-white
+
+                      shadow-[0_10px_30px_rgba(16,185,129,.18)]
                     "
                   >
                     <Check size={18} />
@@ -216,7 +157,6 @@ export default function InvestorBusinessMatching() {
                   <div
                     className="
                       text-lg
-
                       font-medium
 
                       text-slate-800
@@ -313,38 +253,28 @@ export default function InvestorBusinessMatching() {
 
             </div>
 
-          </motion.div>
+          </div>
 
           {/* RIGHT */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 40,
+          <div
+            className="
+              relative
+
+              animate-[fadeUp_.7s_ease]
+            "
+            style={{
+              animationDelay: ".12s",
+              animationFillMode: "both",
             }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.6,
-            }}
-            viewport={{
-              once: true,
-            }}
-            className="relative"
           >
 
-            {/* main card */}
-            <div
+            <GlassCard
               className="
                 relative
 
                 overflow-hidden
 
                 rounded-[40px]
-
-                border
-                border-white/60
 
                 bg-[#07110C]
 
@@ -365,11 +295,20 @@ export default function InvestorBusinessMatching() {
               />
 
               {/* image */}
-              <div className="relative overflow-hidden rounded-[28px]">
+              <div
+                className="
+                  relative
+
+                  overflow-hidden
+
+                  rounded-[28px]
+                "
+              >
 
                 <img
                   src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop"
                   alt="Networking"
+                  loading="lazy"
                   className="
                     h-[420px]
                     w-full
@@ -437,7 +376,6 @@ export default function InvestorBusinessMatching() {
                     <div
                       className="
                         text-3xl
-
                         font-black
 
                         text-white
@@ -446,7 +384,13 @@ export default function InvestorBusinessMatching() {
                       1,200+
                     </div>
 
-                    <div className="text-sm text-slate-300">
+                    <div
+                      className="
+                        text-sm
+
+                        text-slate-300
+                      "
+                    >
                       Business Meetings
                     </div>
 
@@ -500,7 +444,6 @@ export default function InvestorBusinessMatching() {
                     <div
                       className="
                         text-3xl
-
                         font-black
 
                         text-white
@@ -509,7 +452,13 @@ export default function InvestorBusinessMatching() {
                       350+
                     </div>
 
-                    <div className="text-sm text-slate-300">
+                    <div
+                      className="
+                        text-sm
+
+                        text-slate-300
+                      "
+                    >
                       Global Investors
                     </div>
 
@@ -547,7 +496,6 @@ export default function InvestorBusinessMatching() {
                     <div
                       className="
                         text-3xl
-
                         font-black
 
                         tracking-[-0.04em]
@@ -574,13 +522,13 @@ export default function InvestorBusinessMatching() {
 
               </div>
 
-            </div>
+            </GlassCard>
 
-          </motion.div>
+          </div>
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

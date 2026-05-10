@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Globe2,
   Sparkles,
@@ -124,146 +120,133 @@ export default function AboutHero() {
 
         <div className="max-w-5xl">
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 60,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 1,
-            }}
+          {/* badge */}
+          <SectionBadge dark>
+
+            <Sparkles size={14} />
+
+            About Global AI Expo
+
+          </SectionBadge>
+
+          {/* title */}
+          <h1
+            className="
+              mt-8
+
+              text-5xl
+              md:text-7xl
+              xl:text-[110px]
+
+              font-black
+
+              leading-[0.92]
+
+              tracking-[-0.08em]
+
+              text-white
+            "
           >
 
-            {/* badge */}
-            <SectionBadge
-              dark
-              icon={Sparkles}
-            >
-              About Global AI Expo
-            </SectionBadge>
+            BUILDING THE
+            <br />
 
-            {/* title */}
-            <h1
+            WORLD'S
+
+            <span
               className="
-                mt-8
+                ml-4
 
-                text-5xl
-                md:text-7xl
-                xl:text-[110px]
+                bg-gradient-to-r
+                from-emerald-300
+                via-green-400
+                to-emerald-500
 
-                font-black
-
-                leading-[0.92]
-
-                tracking-[-0.08em]
-
-                text-white
+                bg-clip-text
+                text-transparent
               "
             >
+              {" "}AI
+            </span>
 
-              BUILDING THE
-              <br />
+            <br />
 
-              WORLD'S
+            ECOSYSTEM
 
-              <span
+          </h1>
+
+          {/* desc */}
+          <p
+            className="
+              mt-10
+
+              max-w-3xl
+
+              text-lg
+              md:text-[22px]
+
+              leading-9
+
+              text-slate-300
+            "
+          >
+
+            Global AI Expo connects startups,
+            enterprises, governments, researchers,
+            investors, and innovators into one
+            integrated ecosystem shaping the future
+            of artificial intelligence globally.
+
+          </p>
+
+          {/* actions */}
+          <div
+            className="
+              mt-14
+
+              flex
+              flex-wrap
+              items-center
+
+              gap-5
+            "
+          >
+
+            <GlowButton>
+
+              Explore Ecosystem
+
+              <ArrowRight
+                size={18}
                 className="
-                  ml-4
+                  transition-transform
+                  duration-300
 
-                  bg-gradient-to-r
-                  from-emerald-300
-                  via-green-400
-                  to-emerald-500
-
-                  bg-clip-text
-                  text-transparent
+                  group-hover:translate-x-1
                 "
-              >
-                AI
-              </span>
+              />
 
-              <br />
+            </GlowButton>
 
-              ECOSYSTEM
-
-            </h1>
-
-            {/* desc */}
-            <p
-              className="
-                mt-10
-
-                max-w-3xl
-
-                text-lg
-                md:text-[22px]
-
-                leading-9
-
-                text-slate-300
-              "
-            >
-
-              Global AI Expo connects startups,
-              enterprises, governments, researchers,
-              investors, and innovators into one
-              integrated ecosystem shaping the future
-              of artificial intelligence globally.
-
-            </p>
-
-            {/* actions */}
             <div
               className="
-                mt-14
-
                 flex
-                flex-wrap
                 items-center
+                gap-3
 
-                gap-5
+                text-sm
+
+                text-slate-400
               "
             >
 
-              <GlowButton>
-                Explore Ecosystem
+              <Globe2 size={18} />
 
-                <ArrowRight
-                  size={18}
-                  className="
-                    transition-transform
-                    duration-300
-
-                    group-hover:translate-x-1
-                  "
-                />
-              </GlowButton>
-
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-3
-
-                  text-sm
-
-                  text-slate-400
-                "
-              >
-
-                <Globe2 size={18} />
-
-                Global Innovation Platform
-
-              </div>
+              Global Innovation Platform
 
             </div>
 
-          </motion.div>
+          </div>
 
         </div>
 

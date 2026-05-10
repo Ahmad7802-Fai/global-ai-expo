@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Globe2,
   Landmark,
@@ -85,7 +81,8 @@ export default function WhyGlobalAIExpo() {
       className="
         relative
         overflow-hidden
-        py-32
+        py-24
+        md:py-32
 
         bg-[#07110C]
       "
@@ -199,126 +196,121 @@ export default function WhyGlobalAIExpo() {
           "
         >
 
-          {features.map((item, index) => {
+          {features.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <GlassCard
                 key={item.title}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.06,
-                }}
-                viewport={{
-                  once: true,
-                }}
+                dark
+                className="
+                  group
+
+                  h-full
+
+                  p-8
+                "
               >
 
-                <GlassCard
-                  dark
+                {/* top line */}
+                <div
                   className="
-                    h-full
+                    absolute
+                    inset-x-0
+                    top-0
 
-                    p-8
+                    h-px
+
+                    bg-gradient-to-r
+                    from-transparent
+                    via-emerald-400/40
+                    to-transparent
+                  "
+                />
+
+                {/* icon */}
+                <div
+                  className="
+                    flex
+                    h-16
+                    w-16
+                    items-center
+                    justify-center
+
+                    rounded-2xl
+
+                    border
+                    border-white/10
+
+                    bg-white/[0.05]
+
+                    text-emerald-300
+
+                    shadow-[0_10px_30px_rgba(16,185,129,.10)]
+
+                    transition-all
+                    duration-500
+
+                    group-hover:scale-105
+                    group-hover:rotate-3
                   "
                 >
 
-                  <div className="relative z-10">
+                  <Icon size={28} />
 
-                    {/* icon */}
-                    <div
-                      className="
-                        flex
-                        h-16
-                        w-16
-                        items-center
-                        justify-center
+                </div>
 
-                        rounded-2xl
+                {/* title */}
+                <h3
+                  className="
+                    mt-10
 
-                        border
-                        border-white/10
+                    text-[28px]
+                    md:text-[30px]
 
-                        bg-white/[0.05]
+                    font-black
 
-                        text-emerald-300
+                    leading-tight
 
-                        shadow-[0_10px_30px_rgba(16,185,129,.10)]
+                    tracking-[-0.05em]
 
-                        transition-all
-                        duration-500
+                    text-white
+                  "
+                >
+                  {item.title}
+                </h3>
 
-                        group-hover:scale-110
-                        group-hover:rotate-3
-                      "
-                    >
+                {/* divider */}
+                <div
+                  className="
+                    mt-6
 
-                      <Icon size={28} />
+                    h-px
+                    w-full
 
-                    </div>
+                    bg-gradient-to-r
+                    from-emerald-400/30
+                    via-white/10
+                    to-transparent
+                  "
+                />
 
-                    {/* title */}
-                    <h3
-                      className="
-                        mt-10
+                {/* desc */}
+                <p
+                  className="
+                    mt-6
 
-                        text-[30px]
+                    leading-8
 
-                        font-black
+                    text-slate-400
+                  "
+                >
+                  {item.description}
+                </p>
 
-                        leading-tight
-
-                        tracking-[-0.05em]
-
-                        text-white
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* divider */}
-                    <div
-                      className="
-                        mt-6
-
-                        h-px
-                        w-full
-
-                        bg-gradient-to-r
-                        from-emerald-400/30
-                        via-white/10
-                        to-transparent
-                      "
-                    />
-
-                    {/* desc */}
-                    <p
-                      className="
-                        mt-6
-
-                        leading-8
-
-                        text-slate-400
-                      "
-                    >
-                      {item.description}
-                    </p>
-
-                  </div>
-
-                </GlassCard>
-
-              </motion.div>
+              </GlassCard>
 
             );
           })}

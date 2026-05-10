@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Cpu,
   Bot,
@@ -25,54 +21,42 @@ import {
 const ecosystems = [
   {
     title: "AI Infrastructure",
-
     icon: Cpu,
-
     description:
       "Cloud computing, intelligent infrastructure, GPU acceleration, and enterprise-scale AI deployment systems.",
   },
 
   {
     title: "Robotics & Automation",
-
     icon: Bot,
-
     description:
       "Autonomous robotics, industrial AI systems, smart automation, and next-generation machine intelligence.",
   },
 
   {
     title: "Big Data & Intelligence",
-
     icon: Database,
-
     description:
       "Massive-scale data ecosystems powering predictive analytics and real-time intelligent decision making.",
   },
 
   {
     title: "Cybersecurity AI",
-
     icon: ShieldCheck,
-
     description:
       "AI-powered security ecosystems protecting enterprises, governments, and future digital infrastructure.",
   },
 
   {
     title: "AI Education",
-
     icon: GraduationCap,
-
     description:
       "Future-ready education platforms, adaptive intelligence learning systems, and research ecosystems.",
   },
 
   {
     title: "Healthcare AI",
-
     icon: HeartPulse,
-
     description:
       "Medical diagnostics, predictive healthcare, intelligent treatment systems, and health innovation platforms.",
   },
@@ -85,7 +69,8 @@ export default function AIEcosystem() {
       className="
         relative
         overflow-hidden
-        py-32
+        py-24
+        md:py-32
 
         bg-[linear-gradient(180deg,#F7FBF8_0%,#EDF7F1_100%)]
       "
@@ -134,13 +119,18 @@ export default function AIEcosystem() {
 
           <div>
 
-            <SectionBadge
-              icon={Sparkles}
-            >
+            <SectionBadge>
+
+              <Sparkles size={14} />
+
               AI Ecosystem
+
             </SectionBadge>
 
-            <SectionTitle dark>
+            <SectionTitle
+              dark
+              className="mt-7"
+            >
 
               Building The Future
 
@@ -191,125 +181,113 @@ export default function AIEcosystem() {
           "
         >
 
-          {ecosystems.map((item, index) => {
+          {ecosystems.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <GlassCard
                 key={item.title}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.06,
-                }}
-                viewport={{
-                  once: true,
-                }}
+                className="
+                  group
+
+                  h-full
+
+                  border-black/5
+
+                  bg-white/75
+
+                  p-8
+
+                  shadow-[0_10px_40px_rgba(15,23,42,.05)]
+
+                  hover:border-emerald-500/20
+                  hover:bg-white/90
+                  hover:shadow-[0_20px_60px_rgba(16,185,129,.10)]
+                "
               >
 
-                <GlassCard
+                {/* icon */}
+                <div
                   className="
-                    h-full
+                    flex
+                    h-16
+                    w-16
+                    items-center
+                    justify-center
 
-                    p-8
+                    rounded-2xl
+
+                    border
+                    border-emerald-500/10
+
+                    bg-emerald-500/10
+
+                    text-emerald-700
+
+                    shadow-[0_10px_30px_rgba(16,185,129,.08)]
+
+                    transition-all
+                    duration-500
+
+                    group-hover:scale-110
+                    group-hover:rotate-3
                   "
                 >
 
-                  <div className="relative z-10">
+                  <Icon size={28} />
 
-                    {/* icon */}
-                    <div
-                      className="
-                        flex
-                        h-16
-                        w-16
-                        items-center
-                        justify-center
+                </div>
 
-                        rounded-2xl
+                {/* title */}
+                <h3
+                  className="
+                    mt-10
 
-                        border
-                        border-emerald-500/10
+                    text-[30px]
 
-                        bg-emerald-500/10
+                    font-black
 
-                        text-emerald-700
+                    leading-tight
 
-                        shadow-[0_10px_30px_rgba(16,185,129,.08)]
+                    tracking-[-0.05em]
 
-                        transition-all
-                        duration-500
+                    text-[#07110C]
+                  "
+                >
+                  {item.title}
+                </h3>
 
-                        group-hover:scale-110
-                        group-hover:rotate-3
-                      "
-                    >
+                {/* divider */}
+                <div
+                  className="
+                    mt-6
 
-                      <Icon size={28} />
+                    h-px
+                    w-full
 
-                    </div>
+                    bg-gradient-to-r
+                    from-emerald-500/30
+                    via-black/5
+                    to-transparent
+                  "
+                />
 
-                    {/* title */}
-                    <h3
-                      className="
-                        mt-10
+                {/* desc */}
+                <p
+                  className="
+                    mt-6
 
-                        text-[30px]
+                    leading-8
 
-                        font-black
+                    text-slate-600
+                  "
+                >
+                  {item.description}
+                </p>
 
-                        leading-tight
-
-                        tracking-[-0.05em]
-
-                        text-[#07110C]
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* divider */}
-                    <div
-                      className="
-                        mt-6
-
-                        h-px
-                        w-full
-
-                        bg-gradient-to-r
-                        from-emerald-500/30
-                        via-black/5
-                        to-transparent
-                      "
-                    />
-
-                    {/* desc */}
-                    <p
-                      className="
-                        mt-6
-
-                        leading-8
-
-                        text-slate-600
-                      "
-                    >
-                      {item.description}
-                    </p>
-
-                  </div>
-
-                </GlassCard>
-
-              </motion.div>
+              </GlassCard>
 
             );
           })}

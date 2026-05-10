@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Ticket,
   Users,
@@ -85,7 +81,8 @@ export default function Timeline() {
       className="
         relative
         overflow-hidden
-        py-32
+        py-24
+        md:py-32
 
         bg-[#07110C]
       "
@@ -172,9 +169,9 @@ export default function Timeline() {
         </div>
 
         {/* timeline */}
-        <div className="relative mt-24">
+        <div className="relative mt-20 md:mt-24">
 
-          {/* line */}
+          {/* vertical line */}
           <div
             className="
               absolute
@@ -188,42 +185,30 @@ export default function Timeline() {
               w-px
 
               bg-gradient-to-b
-              from-emerald-400/50
+              from-emerald-400/40
               via-white/10
               to-transparent
             "
           />
 
-          <div className="space-y-10">
+          <div className="space-y-8 md:space-y-10">
 
-            {timeline.map((item, index) => {
+            {timeline.map((item) => {
 
               const Icon = item.icon;
 
               return (
 
-                <motion.div
+                <div
                   key={item.title}
-                  initial={{
-                    opacity: 0,
-                    x: -40,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
                   className="
+                    group
+
                     relative
 
                     flex
-                    gap-8
+                    gap-5
+                    md:gap-8
                   "
                 >
 
@@ -257,7 +242,7 @@ export default function Timeline() {
                       transition-all
                       duration-500
 
-                      group-hover:scale-110
+                      group-hover:scale-105
                     "
                   >
 
@@ -273,7 +258,8 @@ export default function Timeline() {
 
                       rounded-[32px]
 
-                      p-8
+                      p-6
+                      md:p-8
                     "
                   >
 
@@ -293,89 +279,86 @@ export default function Timeline() {
                       "
                     />
 
-                    <div className="relative z-10">
+                    {/* day */}
+                    <div
+                      className="
+                        inline-flex
+                        items-center
 
-                      {/* day */}
-                      <div
-                        className="
-                          inline-flex
-                          items-center
+                        rounded-full
 
-                          rounded-full
+                        border
+                        border-emerald-400/15
 
-                          border
-                          border-emerald-400/15
+                        bg-emerald-400/10
 
-                          bg-emerald-400/10
+                        px-4
+                        py-2
 
-                          px-4
-                          py-2
+                        text-[10px]
+                        font-semibold
 
-                          text-[10px]
-                          font-semibold
+                        uppercase
 
-                          uppercase
+                        tracking-[0.30em]
 
-                          tracking-[0.30em]
-
-                          text-emerald-300
-                        "
-                      >
-                        {item.day}
-                      </div>
-
-                      {/* title */}
-                      <h3
-                        className="
-                          mt-6
-
-                          text-[32px]
-
-                          font-black
-
-                          tracking-[-0.05em]
-
-                          text-white
-                        "
-                      >
-                        {item.title}
-                      </h3>
-
-                      {/* divider */}
-                      <div
-                        className="
-                          mt-6
-
-                          h-px
-                          w-full
-
-                          bg-gradient-to-r
-                          from-emerald-400/20
-                          via-white/5
-                          to-transparent
-                        "
-                      />
-
-                      {/* desc */}
-                      <p
-                        className="
-                          mt-6
-
-                          max-w-3xl
-
-                          leading-8
-
-                          text-slate-400
-                        "
-                      >
-                        {item.description}
-                      </p>
-
+                        text-emerald-300
+                      "
+                    >
+                      {item.day}
                     </div>
+
+                    {/* title */}
+                    <h3
+                      className="
+                        mt-6
+
+                        text-2xl
+                        md:text-[32px]
+
+                        font-black
+
+                        tracking-[-0.05em]
+
+                        text-white
+                      "
+                    >
+                      {item.title}
+                    </h3>
+
+                    {/* divider */}
+                    <div
+                      className="
+                        mt-6
+
+                        h-px
+                        w-full
+
+                        bg-gradient-to-r
+                        from-emerald-400/20
+                        via-white/5
+                        to-transparent
+                      "
+                    />
+
+                    {/* desc */}
+                    <p
+                      className="
+                        mt-6
+
+                        max-w-3xl
+
+                        leading-8
+
+                        text-slate-400
+                      "
+                    >
+                      {item.description}
+                    </p>
 
                   </GlassCard>
 
-                </motion.div>
+                </div>
 
               );
             })}

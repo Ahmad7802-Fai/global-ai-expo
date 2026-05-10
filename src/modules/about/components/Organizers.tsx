@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Building2,
   Globe2,
@@ -64,7 +60,8 @@ export default function Organizers() {
       className="
         relative
         overflow-hidden
-        py-32
+        py-24
+        md:py-32
 
         bg-[linear-gradient(180deg,#F7FBF8_0%,#EDF7F1_100%)]
       "
@@ -101,16 +98,28 @@ export default function Organizers() {
       <SectionContainer>
 
         {/* top */}
-        <div className="max-w-5xl mx-auto text-center">
+        <div
+          className="
+            mx-auto
+            max-w-5xl
 
-          <SectionBadge
-            center
-            icon={Sparkles}
-          >
+            text-center
+          "
+        >
+
+          <SectionBadge className="mx-auto">
+
+            <Sparkles size={14} />
+
             Organizers & Partners
+
           </SectionBadge>
 
-          <SectionTitle dark>
+          <SectionTitle
+            dark
+            center
+            className="mt-7"
+          >
 
             Powered By
 
@@ -134,7 +143,6 @@ export default function Organizers() {
 
               text-slate-700
             "
-
           >
 
             Global AI Expo is supported by worldwide
@@ -159,125 +167,129 @@ export default function Organizers() {
           "
         >
 
-          {organizers.map((item, index) => {
+          {organizers.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <GlassCard
                 key={item.title}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                viewport={{
-                  once: true,
-                }}
+                className="
+                  group
+
+                  h-full
+
+                  border-black/5
+
+                  bg-white/80
+
+                  p-8
+
+                  shadow-[0_10px_40px_rgba(15,23,42,.05)]
+
+                  hover:border-emerald-500/20
+                  hover:bg-white
+                  hover:shadow-[0_20px_70px_rgba(16,185,129,.10)]
+                "
               >
 
-                <GlassCard
+                {/* top line */}
+                <div
                   className="
-                    h-full
+                    absolute
+                    inset-x-0
+                    top-0
 
-                    p-8
+                    h-px
+
+                    bg-gradient-to-r
+                    from-transparent
+                    via-emerald-500/40
+                    to-transparent
+                  "
+                />
+
+                {/* icon */}
+                <div
+                  className="
+                    flex
+                    h-16
+                    w-16
+                    items-center
+                    justify-center
+
+                    rounded-2xl
+
+                    border
+                    border-emerald-500/10
+
+                    bg-emerald-500/10
+
+                    text-emerald-700
+
+                    shadow-[0_10px_30px_rgba(16,185,129,.08)]
+
+                    transition-all
+                    duration-500
+
+                    group-hover:scale-110
+                    group-hover:rotate-3
                   "
                 >
 
-                  <div className="relative z-10">
+                  <Icon size={28} />
 
-                    {/* icon */}
-                    <div
-                      className="
-                        flex
-                        h-16
-                        w-16
-                        items-center
-                        justify-center
+                </div>
 
-                        rounded-2xl
+                {/* title */}
+                <h3
+                  className="
+                    mt-10
 
-                        border
-                        border-emerald-500/10
+                    text-[30px]
 
-                        bg-emerald-500/10
+                    font-black
 
-                        text-emerald-700
+                    leading-tight
 
-                        shadow-[0_10px_30px_rgba(16,185,129,.08)]
+                    tracking-[-0.05em]
 
-                        transition-all
-                        duration-500
+                    text-[#07110C]
+                  "
+                >
+                  {item.title}
+                </h3>
 
-                        group-hover:scale-110
-                        group-hover:rotate-3
-                      "
-                    >
+                {/* divider */}
+                <div
+                  className="
+                    mt-6
 
-                      <Icon size={28} />
+                    h-px
+                    w-full
 
-                    </div>
+                    bg-gradient-to-r
+                    from-emerald-500/30
+                    via-black/5
+                    to-transparent
+                  "
+                />
 
-                    {/* title */}
-                    <h3
-                      className="
-                        mt-10
+                {/* desc */}
+                <p
+                  className="
+                    mt-6
 
-                        text-[30px]
+                    leading-8
 
-                        font-black
+                    text-slate-600
+                  "
+                >
+                  {item.description}
+                </p>
 
-                        leading-tight
-
-                        tracking-[-0.05em]
-
-                        text-[#07110C]
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* divider */}
-                    <div
-                      className="
-                        mt-6
-
-                        h-px
-                        w-full
-
-                        bg-gradient-to-r
-                        from-emerald-500/30
-                        via-black/5
-                        to-transparent
-                      "
-                    />
-
-                    {/* desc */}
-                    <p
-                      className="
-                        mt-6
-
-                        leading-8
-
-                        text-slate-600
-                      "
-                    >
-                      {item.description}
-                    </p>
-
-                  </div>
-
-                </GlassCard>
-
-              </motion.div>
+              </GlassCard>
 
             );
           })}
@@ -290,11 +302,31 @@ export default function Organizers() {
           className="
             mt-24
 
-            rounded-[40px]
+            border-black/5
+
+            bg-white/70
 
             p-10
+
+            shadow-[0_10px_40px_rgba(15,23,42,.05)]
           "
         >
+
+          {/* top line */}
+          <div
+            className="
+              absolute
+              inset-x-0
+              top-0
+
+              h-px
+
+              bg-gradient-to-r
+              from-transparent
+              via-emerald-500/30
+              to-transparent
+            "
+          />
 
           <div
             className="

@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Mic2,
   Rocket,
@@ -18,6 +14,7 @@ import {
   GridBackground,
   GlowOrb,
   SectionContainer,
+  GlassCard,
 } from "@/components/ui";
 
 const zones = [
@@ -87,9 +84,7 @@ export default function ExpoExperienceZones() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#F8FBF9_0%,#EDF7F1_45%,#E2F2E8_100%)]
@@ -123,6 +118,7 @@ export default function ExpoExperienceZones() {
 
       {/* grid */}
       <GridBackground
+        dark
         className="
           opacity-[0.03]
 
@@ -133,19 +129,19 @@ export default function ExpoExperienceZones() {
       <SectionContainer>
 
         {/* top */}
-        <div className="grid gap-14 lg:grid-cols-2 lg:items-end">
+        <div
+          className="
+            grid
+            gap-14
+
+            lg:grid-cols-2
+            lg:items-end
+          "
+        >
 
           <div>
 
-            <SectionBadge
-              className="
-                border-emerald-500/20
-
-                bg-white/70
-
-                text-emerald-700
-              "
-            >
+            <SectionBadge dark>
               Expo Experience Zones
             </SectionBadge>
 
@@ -168,7 +164,6 @@ export default function ExpoExperienceZones() {
                 max-w-xl
 
                 text-lg
-
                 leading-9
 
                 text-slate-700
@@ -199,195 +194,224 @@ export default function ExpoExperienceZones() {
           "
         >
 
-          {zones.map((zone, index) => {
+          {zones.map((zone) => {
+
             const Icon = zone.icon;
 
             return (
-              <motion.div
+
+              <div
                 key={zone.title}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                viewport={{
-                  once: true,
-                }}
                 className={`
-                  group
-                  relative
-
-                  overflow-hidden
-
-                  rounded-[36px]
-
-                  border
-                  border-white/50
-
-                  shadow-[0_10px_40px_rgba(15,23,42,.08)]
+                  animate-[fadeUp_.6s_ease]
 
                   ${zone.className}
                 `}
               >
 
-                {/* image */}
-                <img
-                  src={zone.image}
-                  alt={zone.title}
+                <GlassCard
                   className="
-                    absolute
-                    inset-0
+                    group
 
-                    h-full
-                    w-full
-
-                    object-cover
-
-                    transition-transform
-                    duration-700
-
-                    group-hover:scale-105
-                  "
-                />
-
-                {/* overlay */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-
-                    bg-gradient-to-t
-                    from-[#07110C]/95
-                    via-[#07110C]/45
-                    to-transparent
-                  "
-                />
-
-                {/* glow */}
-                <div
-                  className="
-                    absolute
-                    inset-0
-
-                    bg-[radial-gradient(circle_at_top_right,rgba(47,209,123,.16),transparent_35%)]
-                  "
-                />
-
-                {/* content */}
-                <div
-                  className="
                     relative
-                    z-10
 
-                    flex
                     h-full
-                    flex-col
-                    justify-between
 
-                    p-8
+                    overflow-hidden
+
+                    rounded-[36px]
+
+                    border-white/40
+
+                    bg-white/50
+
+                    p-0
+
+                    backdrop-blur-xl
+
+                    shadow-[0_10px_40px_rgba(15,23,42,.06)]
+
+                    transition-all
+                    duration-500
+
+                    hover:-translate-y-2
+                    hover:border-emerald-500/20
+                    hover:shadow-[0_20px_60px_rgba(34,197,94,.12)]
                   "
                 >
 
-                  {/* icon */}
+                  {/* image */}
+                  <img
+                    src={zone.image}
+                    alt={zone.title}
+                    loading="lazy"
+                    className="
+                      absolute
+                      inset-0
+
+                      h-full
+                      w-full
+
+                      object-cover
+
+                      transition-transform
+                      duration-700
+
+                      group-hover:scale-105
+                    "
+                  />
+
+                  {/* overlay */}
                   <div
                     className="
+                      absolute
+                      inset-0
+
+                      bg-gradient-to-t
+                      from-[#07110C]/95
+                      via-[#07110C]/45
+                      to-transparent
+                    "
+                  />
+
+                  {/* glow */}
+                  <div
+                    className="
+                      absolute
+                      inset-0
+
+                      bg-[radial-gradient(circle_at_top_right,rgba(47,209,123,.16),transparent_35%)]
+                    "
+                  />
+
+                  {/* content */}
+                  <div
+                    className="
+                      relative
+                      z-10
+
                       flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
+                      h-full
+                      flex-col
+                      justify-between
 
-                      rounded-2xl
-
-                      border
-                      border-white/10
-
-                      bg-white/[0.08]
-
-                      text-white
-
-                      backdrop-blur-xl
+                      p-8
                     "
                   >
-                    <Icon size={28} />
-                  </div>
 
-                  {/* bottom */}
-                  <div>
-
-                    <h3
-                      className="
-                        text-3xl
-                        md:text-4xl
-
-                        font-black
-
-                        leading-tight
-
-                        tracking-[-0.04em]
-
-                        text-white
-                      "
-                    >
-                      {zone.title}
-                    </h3>
-
-                    <p
-                      className="
-                        mt-5
-
-                        max-w-xl
-
-                        leading-8
-
-                        text-slate-200
-                      "
-                    >
-                      {zone.desc}
-                    </p>
-
+                    {/* icon */}
                     <div
                       className="
-                        mt-8
-
                         flex
+                        h-16
+                        w-16
                         items-center
-                        gap-3
+                        justify-center
 
-                        text-sm
-                        font-semibold
+                        rounded-2xl
 
-                        text-emerald-300
+                        border
+                        border-white/10
+
+                        bg-white/[0.08]
+
+                        text-white
+
+                        backdrop-blur-xl
                       "
                     >
 
-                      Explore Experience
+                      <Icon size={28} />
 
-                      <ArrowUpRight
-                        size={16}
+                    </div>
+
+                    {/* bottom */}
+                    <div>
+
+                      <h3
                         className="
-                          transition-transform
-                          duration-300
+                          text-3xl
+                          md:text-4xl
 
-                          group-hover:translate-x-1
-                          group-hover:-translate-y-1
+                          font-black
+
+                          leading-tight
+
+                          tracking-[-0.04em]
+
+                          text-white
+                        "
+                      >
+                        {zone.title}
+                      </h3>
+
+                      {/* divider */}
+                      <div
+                        className="
+                          mt-6
+
+                          h-px
+                          w-full
+
+                          bg-gradient-to-r
+                          from-emerald-400/40
+                          to-transparent
                         "
                       />
+
+                      <p
+                        className="
+                          mt-6
+
+                          max-w-xl
+
+                          leading-8
+
+                          text-slate-200
+                        "
+                      >
+                        {zone.desc}
+                      </p>
+
+                      {/* action */}
+                      <div
+                        className="
+                          mt-8
+
+                          flex
+                          items-center
+                          gap-3
+
+                          text-sm
+                          font-semibold
+
+                          text-emerald-300
+                        "
+                      >
+
+                        Explore Experience
+
+                        <ArrowUpRight
+                          size={16}
+                          className="
+                            transition-transform
+                            duration-300
+
+                            group-hover:translate-x-1
+                            group-hover:-translate-y-1
+                          "
+                        />
+
+                      </div>
 
                     </div>
 
                   </div>
 
-                </div>
+                </GlassCard>
 
-              </motion.div>
+              </div>
+
             );
           })}
 

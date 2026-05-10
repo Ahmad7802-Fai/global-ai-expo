@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   ArrowRight,
   Sparkles,
@@ -19,7 +15,6 @@ import {
 } from "@/components/ui";
 
 export default function AboutCTA() {
-
   return (
     <section
       className="
@@ -61,22 +56,7 @@ export default function AboutCTA() {
 
       <SectionContainer>
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
-          viewport={{
-            once: true,
-          }}
-        >
+        <div className="animate-fade-up">
 
           <GlassCard
             dark
@@ -147,10 +127,13 @@ export default function AboutCTA() {
               {/* badge */}
               <SectionBadge
                 dark
-                icon={Sparkles}
                 className="mx-auto"
               >
+
+                <Sparkles size={14} />
+
                 Join The AI Revolution
+
               </SectionBadge>
 
               {/* title */}
@@ -304,7 +287,7 @@ export default function AboutCTA() {
 
           </GlassCard>
 
-        </motion.div>
+        </div>
 
       </SectionContainer>
 

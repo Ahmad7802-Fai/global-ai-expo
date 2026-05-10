@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   BrainCircuit,
   Cpu,
@@ -13,42 +10,58 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+import {
+  GridBackground,
+  GlowOrb,
+  GlassCard,
+  SectionBadge,
+  SectionContainer,
+  SectionTitle,
+} from "@/components/ui";
+
 const themes = [
   {
     title: "Generative AI",
     icon: BrainCircuit,
     desc: "Exploring frontier generative models, multimodal AI, and next-generation creativity systems.",
   },
+
   {
     title: "AI Infrastructure",
     icon: Cpu,
     desc: "Cloud compute, GPU ecosystems, inference scaling, and enterprise AI deployment.",
   },
+
   {
     title: "AI Security",
     icon: ShieldCheck,
     desc: "Building safe, secure, and trustworthy AI systems for the future economy.",
   },
+
   {
     title: "Smart Government",
     icon: Building2,
     desc: "Public-sector transformation powered by AI automation and intelligent infrastructure.",
   },
+
   {
     title: "AI Healthcare",
     icon: Stethoscope,
     desc: "Healthcare innovation, diagnostics, biotech AI, and intelligent medical ecosystems.",
   },
+
   {
     title: "Robotics",
     icon: Bot,
     desc: "Autonomous robotics, industrial automation, and physical AI applications.",
   },
+
   {
     title: "Future Industry",
     icon: Factory,
     desc: "Smart manufacturing, industrial AI, predictive systems, and future operations.",
   },
+
   {
     title: "Global AI Society",
     icon: Globe2,
@@ -61,16 +74,14 @@ export default function Themes() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#DDEEDF_0%,#CDE7D5_40%,#B8DFC4_100%)]
       "
     >
 
-      {/* TOP FADE */}
+      {/* top fade */}
       <div
         className="
           absolute
@@ -85,117 +96,69 @@ export default function Themes() {
         "
       />
 
-      {/* SOFT GLOW */}
-      <div
+      {/* glow */}
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[360px]
           w-[360px]
 
-          rounded-full
-
           bg-emerald-400/15
-
-          blur-[120px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/12
-
-          blur-[120px]
         "
       />
 
-      {/* GRID */}
-      <div
+      {/* grid */}
+      <GridBackground
+        dark
         className="
-          absolute
-          inset-0
-
           opacity-[0.03]
 
-          bg-[linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
+          [background-image:linear-gradient(rgba(0,0,0,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.08)_1px,transparent_1px)]
         "
       />
 
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
-        {/* TOP */}
-        <div className="grid gap-14 lg:grid-cols-2 lg:items-end">
+        {/* top */}
+        <div
+          className="
+            grid
+            gap-14
+
+            lg:grid-cols-2
+            lg:items-end
+          "
+        >
 
           <div>
 
-            <div
-              className="
-                inline-flex
-                items-center
-
-                rounded-full
-
-                border
-                border-emerald-500/20
-
-                bg-white/60
-
-                px-5
-                py-2
-
-                text-[11px]
-                font-semibold
-
-                uppercase
-                tracking-[0.28em]
-
-                text-emerald-700
-
-                backdrop-blur-xl
-              "
-            >
+            <SectionBadge dark>
               Innovation Tracks
+            </SectionBadge>
+
+            <div className="mt-6">
+
+              <SectionTitle
+                dark
+                title="Explore The Future"
+                highlight="of AI Innovation"
+              />
+
             </div>
-
-            <h2
-              className="
-                mt-6
-
-                max-w-5xl
-
-                text-5xl
-                md:text-6xl
-                xl:text-7xl
-
-                font-black
-
-                leading-[0.95]
-
-                tracking-[-0.06em]
-
-                text-[#07110C]
-              "
-            >
-
-              Explore The Future
-              <span className="text-emerald-600">
-                {" "}of AI Innovation
-              </span>
-
-            </h2>
 
           </div>
 
@@ -206,7 +169,6 @@ export default function Themes() {
                 max-w-xl
 
                 text-lg
-
                 leading-9
 
                 text-slate-700
@@ -224,174 +186,197 @@ export default function Themes() {
 
         </div>
 
-        {/* CARDS */}
-        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {/* cards */}
+        <div
+          className="
+            mt-20
 
-          {themes.map((theme, index) => {
+            grid
+            gap-6
+
+            md:grid-cols-2
+            xl:grid-cols-4
+          "
+        >
+
+          {themes.map((theme) => {
+
             const Icon = theme.icon;
 
             return (
-              <motion.div
+
+              <div
                 key={theme.title}
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.06,
-                }}
-                viewport={{
-                  once: true,
-                }}
                 className="
-                  group
-
-                  relative
-
-                  overflow-hidden
-
-                  rounded-[34px]
-
-                  border
-                  border-white/50
-
-                  bg-white/55
-
-                  p-8
-
-                  backdrop-blur-2xl
-
-                  shadow-[0_10px_40px_rgba(15,23,42,.06)]
-
-                  transition-all
-                  duration-500
-
-                  hover:-translate-y-2
-                  hover:bg-white/72
-                  hover:shadow-[0_20px_60px_rgba(34,197,94,.14)]
+                  animate-[fadeUp_.6s_ease]
                 "
               >
 
-                {/* CARD GLOW */}
-                <div
+                <GlassCard
                   className="
-                    absolute
-                    right-0
-                    top-0
+                    group
 
-                    h-24
-                    w-24
-
-                    rounded-full
-
-                    bg-emerald-400/15
-
-                    blur-3xl
-                  "
-                />
-
-                {/* ICON */}
-                <div
-                  className="
                     relative
 
-                    flex
-                    h-16
-                    w-16
-                    items-center
-                    justify-center
+                    h-full
 
-                    rounded-2xl
+                    overflow-hidden
 
-                    bg-emerald-50
+                    border-white/40
 
-                    text-emerald-600
-                  "
-                >
-                  <Icon size={28} />
-                </div>
+                    bg-white/60
 
-                {/* TITLE */}
-                <h3
-                  className="
-                    relative
+                    p-8
 
-                    mt-10
+                    backdrop-blur-xl
 
-                    text-2xl
+                    transition-all
+                    duration-500
 
-                    font-black
-
-                    leading-tight
-
-                    tracking-[-0.03em]
-
-                    text-[#07110C]
-                  "
-                >
-                  {theme.title}
-                </h3>
-
-                {/* DESC */}
-                <p
-                  className="
-                    relative
-
-                    mt-5
-
-                    leading-8
-
-                    text-slate-600
-                  "
-                >
-                  {theme.desc}
-                </p>
-
-                {/* BOTTOM */}
-                <div
-                  className="
-                    relative
-
-                    mt-10
-
-                    flex
-                    items-center
-                    gap-3
-
-                    text-sm
-                    font-semibold
-
-                    text-emerald-700
+                    hover:-translate-y-2
+                    hover:border-emerald-500/20
+                    hover:bg-white/85
+                    hover:shadow-[0_20px_60px_rgba(34,197,94,.12)]
                   "
                 >
 
-                  Explore Theme
-
-                  <ArrowUpRight
-                    size={16}
+                  {/* glow */}
+                  <div
                     className="
-                      transition-transform
-                      duration-300
+                      absolute
+                      right-0
+                      top-0
 
-                      group-hover:translate-x-1
-                      group-hover:-translate-y-1
+                      h-24
+                      w-24
+
+                      rounded-full
+
+                      bg-emerald-400/15
+
+                      blur-3xl
                     "
                   />
 
-                </div>
+                  {/* icon */}
+                  <div
+                    className="
+                      relative
 
-              </motion.div>
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
+
+                      rounded-2xl
+
+                      border
+                      border-emerald-500/10
+
+                      bg-emerald-50
+
+                      text-emerald-600
+                    "
+                  >
+
+                    <Icon size={28} />
+
+                  </div>
+
+                  {/* title */}
+                  <h3
+                    className="
+                      relative
+
+                      mt-10
+
+                      text-[28px]
+
+                      font-black
+
+                      leading-tight
+
+                      tracking-[-0.04em]
+
+                      text-[#07110C]
+                    "
+                  >
+                    {theme.title}
+                  </h3>
+
+                  {/* divider */}
+                  <div
+                    className="
+                      mt-6
+
+                      h-px
+                      w-full
+
+                      bg-gradient-to-r
+                      from-emerald-500/40
+                      to-transparent
+                    "
+                  />
+
+                  {/* desc */}
+                  <p
+                    className="
+                      relative
+
+                      mt-6
+
+                      leading-8
+
+                      text-slate-600
+                    "
+                  >
+                    {theme.desc}
+                  </p>
+
+                  {/* bottom */}
+                  <div
+                    className="
+                      relative
+
+                      mt-10
+
+                      flex
+                      items-center
+                      gap-3
+
+                      text-sm
+                      font-semibold
+
+                      text-emerald-700
+                    "
+                  >
+
+                    Explore Theme
+
+                    <ArrowUpRight
+                      size={16}
+                      className="
+                        transition-transform
+                        duration-300
+
+                        group-hover:translate-x-1
+                        group-hover:-translate-y-1
+                      "
+                    />
+
+                  </div>
+
+                </GlassCard>
+
+              </div>
+
             );
           })}
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

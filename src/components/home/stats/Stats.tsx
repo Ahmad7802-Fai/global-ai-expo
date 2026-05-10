@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import {
   Users,
   Rocket,
@@ -49,9 +45,7 @@ export default function Stats() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#07111F_0%,#DCEEDF_35%,#B8E2C6_100%)]
@@ -85,6 +79,7 @@ export default function Stats() {
 
       {/* grid */}
       <GridBackground
+        dark
         className="
           opacity-[0.04]
 
@@ -105,33 +100,17 @@ export default function Stats() {
           "
         >
 
-          {stats.map((item, index) => {
+          {stats.map((item) => {
 
             const Icon = item.icon;
 
             return (
 
-              <motion.div
+              <div
                 key={item.label}
-
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-
-                viewport={{
-                  once: true,
-                }}
+                className="
+                  animate-[fadeUp_.6s_ease]
+                "
               >
 
                 <GlassCard
@@ -142,13 +121,21 @@ export default function Stats() {
 
                     overflow-hidden
 
+                    border-black/5
+
+                    bg-white/70
+
                     p-8
+
+                    backdrop-blur-xl
 
                     transition-all
                     duration-500
 
                     hover:-translate-y-2
-                    hover:bg-white/70
+                    hover:border-emerald-500/20
+                    hover:bg-white
+                    hover:shadow-[0_20px_60px_rgba(16,185,129,.08)]
                   "
                 >
 
@@ -188,6 +175,9 @@ export default function Stats() {
                         justify-center
 
                         rounded-2xl
+
+                        border
+                        border-emerald-500/10
 
                         bg-emerald-50
 
@@ -251,20 +241,18 @@ export default function Stats() {
                     className="
                       mt-8
 
-                      h-[2px]
+                      h-px
                       w-full
 
-                      rounded-full
-
                       bg-gradient-to-r
-                      from-emerald-500
+                      from-emerald-500/60
                       to-transparent
                     "
                   />
 
                 </GlassCard>
 
-              </motion.div>
+              </div>
 
             );
           })}
@@ -309,7 +297,6 @@ export default function Stats() {
                 max-w-xl
 
                 text-lg
-
                 leading-9
 
                 text-slate-700

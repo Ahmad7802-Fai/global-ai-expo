@@ -33,7 +33,10 @@ const RobotModel = dynamic(
 export default function HeroCanvasLayer() {
   return (
     <>
-      <SceneBackground />
+      {/* background */}
+      <div className="hidden md:block">
+        <SceneBackground />
+      </div>
 
       {/* robot */}
       <div
@@ -45,7 +48,7 @@ export default function HeroCanvasLayer() {
           z-[2]
 
           hidden
-          xl:block
+          2xl:block
 
           -translate-y-1/2
         "
@@ -63,7 +66,7 @@ export default function HeroCanvasLayer() {
           z-[3]
 
           hidden
-          lg:block
+          xl:block
 
           -translate-y-1/2
         "
@@ -81,7 +84,7 @@ export default function HeroCanvasLayer() {
           z-[1]
 
           hidden
-          lg:block
+          xl:block
 
           -translate-y-1/2
         "
