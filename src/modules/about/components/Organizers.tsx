@@ -9,8 +9,17 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const organizers = [
+import {
+  SectionBadge,
+  SectionTitle,
+  SectionContainer,
+  GlassCard,
+  GlowOrb,
+  GridBackground,
+  GradientText,
+} from "@/components/ui";
 
+const organizers = [
   {
     title: "Global Organizers",
 
@@ -37,7 +46,6 @@ const organizers = [
     description:
       "Public-sector collaborations supporting smart nation initiatives, policy innovation, and AI transformation.",
   },
-
 ];
 
 const logos = [
@@ -55,9 +63,7 @@ export default function Organizers() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#F7FBF8_0%,#EDF7F1_100%)]
@@ -65,118 +71,56 @@ export default function Organizers() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[340px]
           w-[340px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
-        className="
-          absolute
-          inset-0
+      <GridBackground dark />
 
-          opacity-[0.04]
-
-          bg-[linear-gradient(rgba(0,0,0,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.06)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
-        "
-      />
-
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
-        <div className="max-w-5xl text-center mx-auto">
+        <div className="max-w-5xl mx-auto text-center">
 
-          <div
-            className="
-              inline-flex
-              items-center
-              gap-3
-
-              rounded-full
-
-              border
-              border-emerald-500/20
-
-              bg-white/70
-
-              px-5
-              py-2
-
-              text-[11px]
-              font-semibold
-
-              uppercase
-
-              tracking-[0.30em]
-
-              text-emerald-700
-
-              backdrop-blur-xl
-            "
+          <SectionBadge
+            center
+            icon={Sparkles}
           >
-
-            <Sparkles size={13} />
-
             Organizers & Partners
+          </SectionBadge>
 
-          </div>
-
-          <h2
-            className="
-              mt-7
-
-              text-5xl
-              md:text-6xl
-              xl:text-7xl
-
-              font-black
-
-              leading-[0.95]
-
-              tracking-[-0.06em]
-
-              text-[#07110C]
-            "
-          >
+          <SectionTitle dark>
 
             Powered By
-            <span className="text-emerald-600">
-              {" "}Global Collaboration
-            </span>
 
-          </h2>
+            <br />
+
+            <GradientText glow={false}>
+              Global Collaboration
+            </GradientText>
+
+          </SectionTitle>
 
           <p
             className="
@@ -186,11 +130,11 @@ export default function Organizers() {
               max-w-3xl
 
               text-lg
-
               leading-9
 
               text-slate-700
             "
+
           >
 
             Global AI Expo is supported by worldwide
@@ -223,129 +167,115 @@ export default function Organizers() {
 
               <motion.div
                 key={item.title}
-
                 initial={{
                   opacity: 0,
                   y: 40,
                 }}
-
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
-
                 transition={{
                   duration: 0.5,
                   delay: index * 0.08,
                 }}
-
                 viewport={{
                   once: true,
                 }}
-
-                className="
-                  group
-
-                  relative
-
-                  overflow-hidden
-
-                  rounded-[32px]
-
-                  border
-                  border-black/5
-
-                  bg-white/80
-
-                  p-8
-
-                  backdrop-blur-2xl
-
-                  shadow-[0_10px_40px_rgba(15,23,42,.05)]
-
-                  transition-all
-                  duration-500
-
-                  hover:-translate-y-2
-                  hover:border-emerald-500/20
-                  hover:shadow-[0_20px_70px_rgba(16,185,129,.10)]
-                "
               >
 
-                {/* glow */}
-                <div
+                <GlassCard
                   className="
-                    absolute
-                    inset-0
+                    h-full
 
-                    opacity-0
-
-                    bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,.10),transparent_35%)]
-
-                    transition-opacity
-                    duration-500
-
-                    group-hover:opacity-100
+                    p-8
                   "
-                />
+                >
 
-                <div className="relative z-10">
+                  <div className="relative z-10">
 
-                  {/* icon */}
-                  <div
-                    className="
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
+                    {/* icon */}
+                    <div
+                      className="
+                        flex
+                        h-16
+                        w-16
+                        items-center
+                        justify-center
 
-                      rounded-2xl
+                        rounded-2xl
 
-                      border
-                      border-emerald-500/10
+                        border
+                        border-emerald-500/10
 
-                      bg-emerald-500/10
+                        bg-emerald-500/10
 
-                      text-emerald-700
-                    "
-                  >
+                        text-emerald-700
 
-                    <Icon size={28} />
+                        shadow-[0_10px_30px_rgba(16,185,129,.08)]
+
+                        transition-all
+                        duration-500
+
+                        group-hover:scale-110
+                        group-hover:rotate-3
+                      "
+                    >
+
+                      <Icon size={28} />
+
+                    </div>
+
+                    {/* title */}
+                    <h3
+                      className="
+                        mt-10
+
+                        text-[30px]
+
+                        font-black
+
+                        leading-tight
+
+                        tracking-[-0.05em]
+
+                        text-[#07110C]
+                      "
+                    >
+                      {item.title}
+                    </h3>
+
+                    {/* divider */}
+                    <div
+                      className="
+                        mt-6
+
+                        h-px
+                        w-full
+
+                        bg-gradient-to-r
+                        from-emerald-500/30
+                        via-black/5
+                        to-transparent
+                      "
+                    />
+
+                    {/* desc */}
+                    <p
+                      className="
+                        mt-6
+
+                        leading-8
+
+                        text-slate-600
+                      "
+                    >
+                      {item.description}
+                    </p>
 
                   </div>
 
-                  {/* title */}
-                  <h3
-                    className="
-                      mt-10
-
-                      text-3xl
-
-                      font-black
-
-                      tracking-[-0.04em]
-
-                      text-[#07110C]
-                    "
-                  >
-                    {item.title}
-                  </h3>
-
-                  {/* desc */}
-                  <p
-                    className="
-                      mt-6
-
-                      leading-8
-
-                      text-slate-600
-                    "
-                  >
-                    {item.description}
-                  </p>
-
-                </div>
+                </GlassCard>
 
               </motion.div>
 
@@ -355,20 +285,14 @@ export default function Organizers() {
         </div>
 
         {/* logo cloud */}
-        <div
+        <GlassCard
+          hover={false}
           className="
             mt-24
 
             rounded-[40px]
 
-            border
-            border-black/5
-
-            bg-white/70
-
             p-10
-
-            backdrop-blur-2xl
           "
         >
 
@@ -388,6 +312,8 @@ export default function Organizers() {
                 key={logo}
 
                 className="
+                  group
+
                   flex
                   h-24
 
@@ -409,6 +335,15 @@ export default function Organizers() {
                   tracking-[0.20em]
 
                   text-slate-700
+
+                  transition-all
+                  duration-500
+
+                  hover:-translate-y-1
+                  hover:border-emerald-500/20
+                  hover:bg-white
+                  hover:text-emerald-700
+                  hover:shadow-[0_10px_30px_rgba(16,185,129,.08)]
                 "
               >
                 {logo}
@@ -418,9 +353,9 @@ export default function Organizers() {
 
           </div>
 
-        </div>
+        </GlassCard>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

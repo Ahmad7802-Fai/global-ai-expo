@@ -163,7 +163,7 @@ export default function FeaturedAgenda() {
               }}
             >
 
-              <GlassCard className="p-8">
+              <GlassCard dark className="p-8">
 
                 <div
                   className="

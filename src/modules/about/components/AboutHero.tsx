@@ -8,14 +8,19 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-import SceneBackground
-  from "@/components/3d/SceneBackground";
+import {
+  SceneBackground,
+  Globe,
+  HologramRing,
+} from "@/components/3d";
 
-import Globe
-  from "@/components/3d/Globe";
-
-import HologramRing
-  from "@/components/3d/HologramRing";
+import {
+  SectionContainer,
+  SectionBadge,
+  GlowButton,
+  GlowOrb,
+  GridBackground,
+} from "@/components/ui";
 
 export default function AboutHero() {
 
@@ -23,19 +28,17 @@ export default function AboutHero() {
     <section
       className="
         relative
-
         min-h-screen
-
         overflow-hidden
 
         bg-[#040B08]
       "
     >
 
-      {/* background */}
+      {/* bg scene */}
       <SceneBackground />
 
-      {/* gradient */}
+      {/* overlay */}
       <div
         className="
           absolute
@@ -46,53 +49,32 @@ export default function AboutHero() {
       />
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-140px]
           top-[120px]
 
           h-[420px]
           w-[420px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[80px]
 
           h-[360px]
           w-[360px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
-        className="
-          absolute
-          inset-0
-
-          opacity-[0.04]
-
-          bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)]
-
-          bg-[size:52px_52px]
-        "
-      />
+      <GridBackground />
 
       {/* 3D */}
       <div
@@ -107,9 +89,7 @@ export default function AboutHero() {
           -translate-y-1/2
         "
       >
-
         <Globe />
-
       </div>
 
       <div
@@ -124,16 +104,12 @@ export default function AboutHero() {
           -translate-y-1/2
         "
       >
-
         <HologramRing />
-
       </div>
 
       {/* content */}
-      <div
+      <SectionContainer
         className="
-          container-ai
-
           relative
           z-10
 
@@ -153,52 +129,22 @@ export default function AboutHero() {
               opacity: 0,
               y: 60,
             }}
-
             animate={{
               opacity: 1,
               y: 0,
             }}
-
             transition={{
               duration: 1,
             }}
           >
 
             {/* badge */}
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-3
-
-                rounded-full
-
-                border
-                border-emerald-400/20
-
-                bg-emerald-400/10
-
-                px-6
-                py-3
-
-                text-[11px]
-                font-semibold
-
-                uppercase
-
-                tracking-[0.30em]
-
-                text-emerald-300
-
-                backdrop-blur-xl
-              "
+            <SectionBadge
+              dark
+              icon={Sparkles}
             >
-
-              <Sparkles size={14} />
-
               About Global AI Expo
-
-            </div>
+            </SectionBadge>
 
             {/* title */}
             <h1
@@ -223,6 +169,7 @@ export default function AboutHero() {
               <br />
 
               WORLD'S
+
               <span
                 className="
                   ml-4
@@ -233,7 +180,6 @@ export default function AboutHero() {
                   to-emerald-500
 
                   bg-clip-text
-
                   text-transparent
                 "
               >
@@ -283,37 +229,7 @@ export default function AboutHero() {
               "
             >
 
-              <button
-                className="
-                  group
-
-                  flex
-                  h-14
-                  items-center
-                  gap-3
-
-                  rounded-2xl
-
-                  bg-gradient-to-r
-                  from-emerald-400
-                  to-green-500
-
-                  px-8
-
-                  text-sm
-                  font-bold
-
-                  text-[#04110A]
-
-                  shadow-[0_0_40px_rgba(47,209,123,.24)]
-
-                  transition-all
-                  duration-300
-
-                  hover:scale-[1.03]
-                "
-              >
-
+              <GlowButton>
                 Explore Ecosystem
 
                 <ArrowRight
@@ -325,8 +241,7 @@ export default function AboutHero() {
                     group-hover:translate-x-1
                   "
                 />
-
-              </button>
+              </GlowButton>
 
               <div
                 className="
@@ -352,7 +267,7 @@ export default function AboutHero() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

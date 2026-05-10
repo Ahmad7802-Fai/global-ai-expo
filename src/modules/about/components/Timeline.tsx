@@ -11,8 +11,17 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const timeline = [
+import {
+  SectionBadge,
+  SectionTitle,
+  SectionContainer,
+  GlassCard,
+  GlowOrb,
+  GridBackground,
+  GradientText,
+} from "@/components/ui";
 
+const timeline = [
   {
     title: "Registration & Networking",
 
@@ -67,7 +76,6 @@ const timeline = [
     description:
       "Celebrating the world's most impactful AI innovations, visionary founders, and transformative technologies.",
   },
-
 ];
 
 export default function Timeline() {
@@ -76,9 +84,7 @@ export default function Timeline() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[#07110C]
@@ -86,116 +92,62 @@ export default function Timeline() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[360px]
           w-[360px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
-        className="
-          absolute
-          inset-0
+      <GridBackground />
 
-          opacity-[0.03]
-
-          bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)]
-
-          bg-[size:52px_52px]
-        "
-      />
-
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
         <div className="max-w-4xl">
 
-          <div
-            className="
-              inline-flex
-              items-center
-              gap-3
-
-              rounded-full
-
-              border
-              border-emerald-400/20
-
-              bg-emerald-400/10
-
-              px-5
-              py-2
-
-              text-[11px]
-              font-semibold
-
-              uppercase
-
-              tracking-[0.30em]
-
-              text-emerald-300
-            "
+          <SectionBadge
+            dark
+            icon={Sparkles}
           >
-
-            <Sparkles size={13} />
-
             Event Timeline
+          </SectionBadge>
 
-          </div>
-
-          <h2
+          <SectionTitle
             className="
               mt-7
-
-              text-5xl
-              md:text-6xl
-              xl:text-7xl
-
-              font-black
-
-              leading-[0.95]
-
-              tracking-[-0.06em]
 
               text-white
             "
           >
 
             The Journey Of
-            <span className="text-emerald-400">
-              {" "}Global AI Expo
-            </span>
 
-          </h2>
+            <br />
+
+            <GradientText>
+              Global AI Expo
+            </GradientText>
+
+          </SectionTitle>
 
           <p
             className="
@@ -204,7 +156,6 @@ export default function Timeline() {
               max-w-3xl
 
               text-lg
-
               leading-9
 
               text-slate-400
@@ -223,7 +174,7 @@ export default function Timeline() {
         {/* timeline */}
         <div className="relative mt-24">
 
-          {/* center line */}
+          {/* line */}
           <div
             className="
               absolute
@@ -253,26 +204,21 @@ export default function Timeline() {
 
                 <motion.div
                   key={item.title}
-
                   initial={{
                     opacity: 0,
                     x: -40,
                   }}
-
                   whileInView={{
                     opacity: 1,
                     x: 0,
                   }}
-
                   transition={{
                     duration: 0.5,
                     delay: index * 0.08,
                   }}
-
                   viewport={{
                     once: true,
                   }}
-
                   className="
                     relative
 
@@ -304,7 +250,14 @@ export default function Timeline() {
 
                       text-emerald-300
 
+                      shadow-[0_10px_30px_rgba(16,185,129,.10)]
+
                       backdrop-blur-xl
+
+                      transition-all
+                      duration-500
+
+                      group-hover:scale-110
                     "
                   >
 
@@ -313,49 +266,30 @@ export default function Timeline() {
                   </div>
 
                   {/* card */}
-                  <div
+                  <GlassCard
+                    dark
                     className="
-                      group
-
-                      relative
-
                       flex-1
-
-                      overflow-hidden
 
                       rounded-[32px]
 
-                      border
-                      border-white/10
-
-                      bg-white/[0.04]
-
                       p-8
-
-                      backdrop-blur-2xl
-
-                      transition-all
-                      duration-500
-
-                      hover:border-emerald-400/20
-                      hover:bg-white/[0.05]
                     "
                   >
 
-                    {/* glow */}
+                    {/* top line */}
                     <div
                       className="
                         absolute
-                        inset-0
+                        inset-x-0
+                        top-0
 
-                        opacity-0
+                        h-px
 
-                        bg-[radial-gradient(circle_at_top_right,rgba(47,209,123,.12),transparent_35%)]
-
-                        transition-opacity
-                        duration-500
-
-                        group-hover:opacity-100
+                        bg-gradient-to-r
+                        from-transparent
+                        via-emerald-400/40
+                        to-transparent
                       "
                     />
 
@@ -364,8 +298,20 @@ export default function Timeline() {
                       {/* day */}
                       <div
                         className="
-                          text-[11px]
+                          inline-flex
+                          items-center
 
+                          rounded-full
+
+                          border
+                          border-emerald-400/15
+
+                          bg-emerald-400/10
+
+                          px-4
+                          py-2
+
+                          text-[10px]
                           font-semibold
 
                           uppercase
@@ -381,19 +327,34 @@ export default function Timeline() {
                       {/* title */}
                       <h3
                         className="
-                          mt-5
+                          mt-6
 
-                          text-3xl
+                          text-[32px]
 
                           font-black
 
-                          tracking-[-0.04em]
+                          tracking-[-0.05em]
 
                           text-white
                         "
                       >
                         {item.title}
                       </h3>
+
+                      {/* divider */}
+                      <div
+                        className="
+                          mt-6
+
+                          h-px
+                          w-full
+
+                          bg-gradient-to-r
+                          from-emerald-400/20
+                          via-white/5
+                          to-transparent
+                        "
+                      />
 
                       {/* desc */}
                       <p
@@ -412,7 +373,7 @@ export default function Timeline() {
 
                     </div>
 
-                  </div>
+                  </GlassCard>
 
                 </motion.div>
 
@@ -423,7 +384,7 @@ export default function Timeline() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

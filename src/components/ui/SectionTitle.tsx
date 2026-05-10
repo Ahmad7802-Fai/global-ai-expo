@@ -1,22 +1,32 @@
 "use client";
 
+import { ReactNode } from "react";
+
 import GradientText from "./GradientText";
 
 interface SectionTitleProps {
-  title: string;
+  title?: string;
+
   highlight?: string;
+
+  children?: ReactNode;
+
   center?: boolean;
+
   dark?: boolean;
+
   className?: string;
 }
 
 export default function SectionTitle({
   title,
   highlight,
+  children,
   center = false,
   dark = false,
   className = "",
 }: SectionTitleProps) {
+
   return (
     <h2
       className={`
@@ -46,15 +56,21 @@ export default function SectionTitle({
       `}
     >
 
-      {title}
-
-      {highlight && (
+      {children ? (
+        children
+      ) : (
         <>
-          {" "}
+          {title}
 
-          <GradientText>
-            {highlight}
-          </GradientText>
+          {highlight && (
+            <>
+              {" "}
+
+              <GradientText>
+                {highlight}
+              </GradientText>
+            </>
+          )}
         </>
       )}
 

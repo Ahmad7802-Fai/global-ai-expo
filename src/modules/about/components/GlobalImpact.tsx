@@ -10,8 +10,17 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const stats = [
+import {
+  SectionBadge,
+  SectionTitle,
+  SectionContainer,
+  GlassCard,
+  GlowOrb,
+  GridBackground,
+  GradientText,
+} from "@/components/ui";
 
+const stats = [
   {
     label: "Countries",
 
@@ -55,7 +64,6 @@ const stats = [
     description:
       "Emerging startups shaping future intelligence.",
   },
-
 ];
 
 export default function GlobalImpact() {
@@ -64,9 +72,7 @@ export default function GlobalImpact() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[linear-gradient(180deg,#F7FBF8_0%,#ECF6F0_100%)]
@@ -74,118 +80,63 @@ export default function GlobalImpact() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[360px]
           w-[360px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[0px]
 
           h-[320px]
           w-[320px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
-        className="
-          absolute
-          inset-0
+      <GridBackground dark />
 
-          opacity-[0.04]
-
-          bg-[linear-gradient(rgba(0,0,0,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.06)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
-        "
-      />
-
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
-        <div className="max-w-5xl text-center mx-auto">
+        <div
+          className="
+            mx-auto
+            max-w-5xl
 
-          <div
-            className="
-              inline-flex
-              items-center
-              gap-3
+            text-center
+          "
+        >
 
-              rounded-full
-
-              border
-              border-emerald-500/20
-
-              bg-white/70
-
-              px-5
-              py-2
-
-              text-[11px]
-              font-semibold
-
-              uppercase
-
-              tracking-[0.30em]
-
-              text-emerald-700
-
-              backdrop-blur-xl
-            "
+          <SectionBadge
+            icon={Sparkles}
+            className="mx-auto"
           >
-
-            <Sparkles size={13} />
-
             Global Impact
+          </SectionBadge>
 
-          </div>
-
-          <h2
-            className="
-              mt-7
-
-              text-5xl
-              md:text-6xl
-              xl:text-7xl
-
-              font-black
-
-              leading-[0.95]
-
-              tracking-[-0.06em]
-
-              text-[#07110C]
-            "
-          >
+          <SectionTitle dark>
 
             Connecting The World's
-            <span className="text-emerald-600">
-              {" "}AI Ecosystem
-            </span>
 
-          </h2>
+            <br />
+
+            <GradientText>
+              AI Ecosystem
+            </GradientText>
+
+          </SectionTitle>
 
           <p
             className="
@@ -232,149 +183,169 @@ export default function GlobalImpact() {
 
               <motion.div
                 key={item.label}
-
                 initial={{
                   opacity: 0,
                   y: 40,
                 }}
-
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
-
                 transition={{
                   duration: 0.5,
                   delay: index * 0.08,
                 }}
-
                 viewport={{
                   once: true,
                 }}
-
-                className="
-                  group
-
-                  relative
-
-                  overflow-hidden
-
-                  rounded-[32px]
-
-                  border
-                  border-black/5
-
-                  bg-white/80
-
-                  p-8
-
-                  backdrop-blur-2xl
-
-                  shadow-[0_10px_40px_rgba(15,23,42,.06)]
-
-                  transition-all
-                  duration-500
-
-                  hover:-translate-y-2
-                  hover:border-emerald-500/20
-                  hover:shadow-[0_20px_70px_rgba(16,185,129,.10)]
-                "
               >
 
-                {/* glow */}
-                <div
+                <GlassCard
                   className="
-                    absolute
-                    inset-0
+                    group
 
-                    opacity-0
+                    relative
 
-                    bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,.10),transparent_35%)]
+                    h-full
 
-                    transition-opacity
+                    overflow-hidden
+
+                    rounded-[32px]
+
+                    border-black/5
+
+                    bg-white/80
+
+                    p-8
+
+                    transition-all
                     duration-500
 
-                    group-hover:opacity-100
+                    hover:-translate-y-2
+                    hover:border-emerald-500/20
+                    hover:bg-white
+                    hover:shadow-[0_20px_70px_rgba(16,185,129,.10)]
                   "
-                />
+                >
 
-                <div className="relative z-10">
-
-                  {/* icon */}
+                  {/* glow */}
                   <div
                     className="
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
+                      absolute
+                      inset-0
 
-                      rounded-2xl
+                      opacity-0
 
-                      border
-                      border-emerald-500/10
+                      bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,.10),transparent_35%)]
 
-                      bg-emerald-500/10
+                      transition-opacity
+                      duration-500
 
-                      text-emerald-700
+                      group-hover:opacity-100
                     "
-                  >
+                  />
 
-                    <Icon size={28} />
+                  {/* top line */}
+                  <div
+                    className="
+                      absolute
+                      inset-x-0
+                      top-0
+
+                      h-px
+
+                      bg-gradient-to-r
+                      from-transparent
+                      via-emerald-500/40
+                      to-transparent
+                    "
+                  />
+
+                  <div className="relative z-10">
+
+                    {/* icon */}
+                    <div
+                      className="
+                        flex
+                        h-16
+                        w-16
+                        items-center
+                        justify-center
+
+                        rounded-2xl
+
+                        border
+                        border-emerald-500/10
+
+                        bg-emerald-500/10
+
+                        text-emerald-700
+
+                        transition-all
+                        duration-500
+
+                        group-hover:scale-110
+                        group-hover:rotate-3
+                      "
+                    >
+
+                      <Icon size={28} />
+
+                    </div>
+
+                    {/* number */}
+                    <div
+                      className="
+                        mt-10
+
+                        text-6xl
+
+                        font-black
+
+                        leading-none
+
+                        tracking-[-0.06em]
+
+                        text-[#07110C]
+                      "
+                    >
+                      {item.value}
+                    </div>
+
+                    {/* label */}
+                    <div
+                      className="
+                        mt-4
+
+                        text-sm
+                        font-bold
+
+                        uppercase
+
+                        tracking-[0.24em]
+
+                        text-emerald-700
+                      "
+                    >
+                      {item.label}
+                    </div>
+
+                    {/* desc */}
+                    <p
+                      className="
+                        mt-6
+
+                        leading-8
+
+                        text-slate-600
+                      "
+                    >
+                      {item.description}
+                    </p>
 
                   </div>
 
-                  {/* number */}
-                  <div
-                    className="
-                      mt-10
-
-                      text-6xl
-
-                      font-black
-
-                      leading-none
-
-                      tracking-[-0.06em]
-
-                      text-[#07110C]
-                    "
-                  >
-                    {item.value}
-                  </div>
-
-                  {/* label */}
-                  <div
-                    className="
-                      mt-4
-
-                      text-sm
-                      font-bold
-
-                      uppercase
-
-                      tracking-[0.24em]
-
-                      text-emerald-700
-                    "
-                  >
-                    {item.label}
-                  </div>
-
-                  {/* desc */}
-                  <p
-                    className="
-                      mt-6
-
-                      leading-8
-
-                      text-slate-600
-                    "
-                  >
-                    {item.description}
-                  </p>
-
-                </div>
+                </GlassCard>
 
               </motion.div>
 
@@ -383,7 +354,7 @@ export default function GlobalImpact() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );

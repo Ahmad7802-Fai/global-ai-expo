@@ -8,8 +8,17 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const items = [
+import {
+  SectionBadge,
+  SectionTitle,
+  SectionContainer,
+  GlassCard,
+  GlowOrb,
+  GridBackground,
+  GradientText,
+} from "@/components/ui";
 
+const items = [
   {
     title: "Our Vision",
 
@@ -41,7 +50,6 @@ const items = [
       "Support ethical AI growth",
     ],
   },
-
 ];
 
 export default function VisionMission() {
@@ -50,9 +58,7 @@ export default function VisionMission() {
     <section
       className="
         relative
-
         overflow-hidden
-
         py-32
 
         bg-[#07110C]
@@ -60,116 +66,61 @@ export default function VisionMission() {
     >
 
       {/* glow */}
-      <div
+      <GlowOrb
         className="
-          absolute
           left-[-120px]
           top-[120px]
 
           h-[340px]
           w-[340px]
 
-          rounded-full
-
           bg-emerald-400/10
-
-          blur-[140px]
         "
       />
 
-      <div
+      <GlowOrb
         className="
-          absolute
           right-[-120px]
           bottom-[40px]
 
           h-[300px]
           w-[300px]
 
-          rounded-full
-
           bg-teal-400/10
-
-          blur-[140px]
         "
       />
 
       {/* grid */}
-      <div
-        className="
-          absolute
-          inset-0
+      <GridBackground />
 
-          opacity-[0.03]
-
-          bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)]
-
-          bg-[size:48px_48px]
-        "
-      />
-
-      <div className="container-ai relative z-10">
+      <SectionContainer>
 
         {/* top */}
         <div className="max-w-4xl">
 
-          <div
-            className="
-              inline-flex
-              items-center
-              gap-3
-
-              rounded-full
-
-              border
-              border-emerald-400/20
-
-              bg-emerald-400/10
-
-              px-5
-              py-2
-
-              text-[11px]
-              font-semibold
-
-              uppercase
-
-              tracking-[0.30em]
-
-              text-emerald-300
-            "
+          <SectionBadge
+            dark
+            icon={Sparkles}
           >
-
-            <Sparkles size={13} />
-
             Vision & Mission
+          </SectionBadge>
 
-          </div>
-
-          <h2
+          <SectionTitle
             className="
               mt-7
-
-              text-5xl
-              md:text-6xl
-              xl:text-7xl
-
-              font-black
-
-              leading-[0.95]
-
-              tracking-[-0.06em]
 
               text-white
             "
           >
-
             Powering The Next
-            <span className="text-emerald-400">
-              {" "}Global AI Era
-            </span>
 
-          </h2>
+            <br />
+
+            <GradientText>
+              Global AI Era
+            </GradientText>
+
+          </SectionTitle>
 
           <p
             className="
@@ -178,7 +129,6 @@ export default function VisionMission() {
               max-w-3xl
 
               text-lg
-
               leading-9
 
               text-slate-400
@@ -214,164 +164,181 @@ export default function VisionMission() {
 
               <motion.div
                 key={item.title}
-
                 initial={{
                   opacity: 0,
                   y: 40,
                 }}
-
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
-
                 transition={{
                   duration: 0.6,
                   delay: index * 0.12,
                 }}
-
                 viewport={{
                   once: true,
                 }}
-
-                className="
-                  group
-
-                  relative
-
-                  overflow-hidden
-
-                  rounded-[36px]
-
-                  border
-                  border-white/10
-
-                  bg-white/[0.04]
-
-                  p-10
-
-                  backdrop-blur-2xl
-
-                  transition-all
-                  duration-500
-
-                  hover:border-emerald-400/20
-                  hover:bg-white/[0.05]
-                "
               >
 
-                {/* glow */}
-                <div
+                <GlassCard
+                  dark
                   className="
-                    absolute
-                    inset-0
+                    h-full
 
-                    opacity-0
+                    p-10
 
-                    bg-[radial-gradient(circle_at_top_right,rgba(47,209,123,.12),transparent_35%)]
-
-                    transition-opacity
-                    duration-500
-
-                    group-hover:opacity-100
+                    rounded-[36px]
                   "
-                />
+                >
 
-                <div className="relative z-10">
+                  {/* content */}
+                  <div className="relative z-10">
 
-                  {/* icon */}
-                  <div
-                    className="
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
+                    {/* icon */}
+                    <div
+                      className="
+                        flex
+                        h-16
+                        w-16
+                        items-center
+                        justify-center
 
-                      rounded-2xl
+                        rounded-2xl
 
-                      border
-                      border-white/10
+                        border
+                        border-white/10
 
-                      bg-emerald-400/10
+                        bg-white/[0.05]
 
-                      text-emerald-300
-                    "
-                  >
+                        text-emerald-300
 
-                    <Icon size={30} />
+                        shadow-[0_10px_30px_rgba(16,185,129,.10)]
 
-                  </div>
+                        transition-all
+                        duration-500
 
-                  {/* title */}
-                  <h3
-                    className="
-                      mt-10
+                        group-hover:scale-110
+                        group-hover:rotate-3
+                      "
+                    >
 
-                      text-4xl
+                      <Icon size={30} />
 
-                      font-black
+                    </div>
 
-                      tracking-[-0.04em]
+                    {/* title */}
+                    <h3
+                      className="
+                        mt-10
 
-                      text-white
-                    "
-                  >
-                    {item.title}
-                  </h3>
+                        text-[42px]
 
-                  {/* desc */}
-                  <p
-                    className="
-                      mt-6
+                        font-black
 
-                      leading-8
+                        leading-none
 
-                      text-slate-400
-                    "
-                  >
-                    {item.description}
-                  </p>
+                        tracking-[-0.05em]
 
-                  {/* points */}
-                  <div className="mt-10 space-y-4">
+                        text-white
+                      "
+                    >
+                      {item.title}
+                    </h3>
 
-                    {item.points.map((point) => (
+                    {/* desc */}
+                    <p
+                      className="
+                        mt-6
 
-                      <div
-                        key={point}
+                        leading-8
 
-                        className="
-                          flex
-                          items-center
-                          gap-4
+                        text-slate-400
+                      "
+                    >
 
-                          text-slate-300
-                        "
-                      >
+                      {item.description}
+
+                    </p>
+
+                    {/* divider */}
+                    <div
+                      className="
+                        mt-10
+
+                        h-px
+                        w-full
+
+                        bg-gradient-to-r
+                        from-emerald-400/30
+                        via-white/10
+                        to-transparent
+                      "
+                    />
+
+                    {/* points */}
+                    <div className="mt-10 space-y-5">
+
+                      {item.points.map((point) => (
 
                         <div
+                          key={point}
                           className="
-                            h-2
-                            w-2
-
-                            rounded-full
-
-                            bg-emerald-400
+                            flex
+                            items-center
+                            gap-4
                           "
-                        />
+                        >
 
-                        <span>
-                          {point}
-                        </span>
+                          <div
+                            className="
+                              relative
 
-                      </div>
+                              h-2.5
+                              w-2.5
 
-                    ))}
+                              rounded-full
+
+                              bg-emerald-400
+                            "
+                          >
+
+                            <div
+                              className="
+                                absolute
+                                inset-0
+
+                                rounded-full
+
+                                bg-emerald-400
+
+                                blur-[6px]
+
+                                opacity-80
+                              "
+                            />
+
+                          </div>
+
+                          <span
+                            className="
+                              text-[15px]
+
+                              text-slate-300
+                            "
+                          >
+                            {point}
+                          </span>
+
+                        </div>
+
+                      ))}
+
+                    </div>
 
                   </div>
 
-                </div>
+                </GlassCard>
 
               </motion.div>
 
@@ -380,7 +347,7 @@ export default function VisionMission() {
 
         </div>
 
-      </div>
+      </SectionContainer>
 
     </section>
   );
